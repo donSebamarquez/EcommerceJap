@@ -1,0 +1,140 @@
+/* Contenedor principal en 2 columnas */
+.login-container {
+  display: flex;
+  height: 100vh; /* altura completa de la pantalla */
+  width: 100%;
+}
+
+/* Columna izquierda: Imagen */
+.img-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Columna derecha: Login */
+.login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centra el contenido verticalmente */
+  align-items: center;
+  background: black;
+  padding: 40px 30px;
+  border-radius: 0; /* eliminamos bordes redondeados para que ocupe todo */
+  box-sizing: border-box;
+  height: 100%; /* ocupa toda la altura de la columna */
+}
+
+/* Título Bienvenid@ */
+.login h2 {
+  color: white;
+  font-weight: 400;
+  font-size: 22px;
+  margin-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+/* Inputs */
+.user__input,
+.password__input {
+  width: 50%;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Raleway', sans-serif;
+  background-color: #f0b89b;
+  color: #8a4c3b;
+  box-sizing: border-box;
+}
+
+/* Botón Ingresar */
+.login__button {
+  width: 50%;
+  padding: 10px 0;
+  background-color: #7ea7bf;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-bottom: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.login__button:hover {
+  background-color: #5a7c9a;
+}
+
+/* Botón Google */
+.btn-google {
+  width: 50%;
+  padding: 10px 0;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  color: #4a7f96;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Raleway', sans-serif;
+  cursor: pointer;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
+
+.btn-google:hover {
+  background-color: #f0f0f0;
+}
+
+/* Contenedor de errores */
+.login__error {
+  color: #ff6666;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+/* Contenedor de los enlaces */
+.links {
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Estilo de los enlaces */
+.links a {
+  text-decoration: none;
+  font-weight: 400;
+  color: #7ea7bf;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #ffffffcc;
+}
+
+/* Footer */
+footer.text-muted {
+  width: 100%;
+  flex-shrink: 0;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}

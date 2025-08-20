@@ -27,7 +27,7 @@ function userSession(user,password){
 
 function user(user){
     if(user.length < 6){
-
+console.log ("error")
         errorMessage("usuario", 6);
         resetValues();
         return;
