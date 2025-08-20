@@ -1,0 +1,177 @@
+/* ===== HEADER minimalista ===== */
+header[role="banner"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #E08B00;   /* naranja prototipo */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Logo */
+.brand_logo {
+  height: 40px;
+  width: auto;
+}
+
+/* Buscador */
+.search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+}
+
+.search_input {
+  flex: 1;
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px 0 0 999px;
+  background: #fff;
+  outline: none;
+}
+
+.search_button {
+  height: 36px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 0 999px 999px 0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.search_button img {
+  width: 18px;
+  height: 18px;
+}
+
+/* Carrito */
+.cart-btn img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/* ====== CONTENEDOR PRINCIPAL ====== */
+#productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); /* auto-fill */
+  gap: 24px;
+  padding: 24px;
+  align-items: start;   /* estira la card a la misma altura */
+  justify-items: center;  /* centra cada card en su celda */
+  flex: 1;                /* clave: empuja la paginación hacia abajo */
+}
+
+/* ====== CARD DE PRODUCTO ====== */
+.product-card {
+  width: 100%;
+  max-width: 360px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  min-height: 360px; 
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagen */
+.product-card_img {
+  width: 100%;
+  height: 180px;       /* altura fija para consistencia */
+  object-fit: cover;   /* recorta sin deformar */
+  border-radius: 8px;
+  background: #f3f5f8;
+  margin-bottom: 8px;
+}
+
+/* Descripción: 2 líneas con “…” */
+.product-card_desc {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 8px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 5rem;       /* reserva el alto de 2 líneas */
+}
+
+/* Precio */
+.product-card_price {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  margin-top: 12px;
+  text-align: center;
+  background: #34a853;  /* verde pastilla */
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+
+/* Vendidos */
+.product-card_sold {
+  display: block;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .search {
+    max-width: 250px;
+    margin: 0 10px;
+  }
+
+  .search_input {
+    min-width: 120px;
+  }
+}
+
+/* ====== LAYOUT (footer abajo) ====== */
+html, body { height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  min-height: auto !important; /* pisa el calc() del styles.css general */
+  display: flex;
+  flex-direction: column;
+  flex: 1;                     /* ocupa el alto disponible */
+}
+
+/* Paginación */
+#paginationNav {
+  margin: 24px 0;
+}
+#pagination {                          
+  display: flex;
+  justify-content: center;
+}
+
+/* ====== FOOTER ====== */
+footer {
+  margin-top: 0;
+  padding: 16px 0;
+  text-align: center;
+  background: #f8f9fa;   /* leve gris, estilo Bootstrap */
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
+}
+footer p { margin: 4px 0; }
+footer a { color: inherit; text-decoration: underline; }

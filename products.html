@@ -4,53 +4,78 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+  <title>Productos - eMercado</title>
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/products.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+
+  <!-- Header-->
+  <header role="banner">
+    <!-- LADO IZQUIERDO: logo + burger -->
+    <div class="header-left">
+      <a href="index.html" class="brand" aria-label="Inicio">
+        <img src="img/byte-squad-logo.png" alt="Byte Squad" class="brand_logo">
+      </a>
+
+      <!-- Botón menú (icono burger) -->
+      <button class="burger-btn" type="button" aria-label="Abrir menú">
+        <img src="img/burger-menu.svg" alt="" aria-hidden="true">
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
-        </ul>
-      </div>
     </div>
-  </nav>
-  <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+
+    <!-- CENTRO: carrito -->
+    <div class="header-center">
+      <a href="cart.html" class="cart-btn" aria-label="Ver carrito">
+        <img src="img/shopping-cart.svg" alt="" aria-hidden="true">
+      </a>
     </div>
+
+    <!-- DERECHA: buscador -->
+    <div class="header-right">
+      <form id="searchForm" class="search" role="search" aria-label="Buscar productos">
+        <input id="searchInput" class="search_input" type="search" placeholder="Buscar..." aria-label="Buscar">
+        <button class="search_button" type="submit" aria-label="Buscar">
+          <img src="img/search.svg" alt="" aria-hidden="true">
+        </button>
+      </form>
+    </div>
+
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main>
+    <!-- Alert de errores (lo maneja JS si algo falla) -->
+    <div id="alert" role="alert" class="d-none"></div>
+
+    <!-- Sección de productos -->
+    <section id="productsGrid" aria-label="Listado de productos">
+      <!-- JS va a inyectar las cards acá -->
+    </section>
+
+    <!-- Paginación -->
+    <nav id="paginationNav" aria-label="Paginación de productos">
+      <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
+    </nav>
+
   </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-end">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
-    </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><a href="#">Volver arriba</a></p>
+    <p>&copy; 2025 eMercado</p>
+    <p>Este sitio forma parte de
+      <a href="https://jovenesaprogramar.edu.uy/" target="_blank" rel="noopener">
+        Jóvenes a Programar
+      </a>
+    </p>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
