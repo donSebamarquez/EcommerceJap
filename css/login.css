@@ -138,3 +138,21 @@ footer.text-muted {
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
   text-align: center;
 }
+
+@media screen and (max-width: 768px){
+
+    .login-container{
+        display: flex;
+        flex-direction: column;
+    }
+    .user__input,
+    .password__input{
+        width: 65%;
+    }
+    .login__button{
+        width: 65%;
+    }
+    .btn-google{
+        width: 65%;
+    }
+}
