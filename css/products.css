@@ -3,6 +3,8 @@ header[role="banner"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 10px 20px;
   background: #E08B00;   /* naranja prototipo */
   position: sticky;
@@ -101,6 +103,7 @@ header[role="banner"] {
   color: #666;
   margin: 8px 0;
   display: -webkit-box;
+  
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 5rem;       /* reserva el alto de 2 líneas */
@@ -129,10 +132,15 @@ header[role="banner"] {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .search {
-    max-width: 250px;
-    margin: 0 10px;
+    order: 3;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  .brand_logo{
+    height: 32px;
   }
 
   .search_input {
