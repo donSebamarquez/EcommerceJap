@@ -12,6 +12,27 @@ header[role="banner"] {
   z-index: 1000;
 }
 
+.user-email{
+  background:#fff;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:14px;
+  white-space:nowrap;     /* no parte en varias líneas */
+  flex-shrink:0;          /* no se achica (no “empuja” al buscador) */
+  max-width:260px;        /* controla el largo visual */
+  overflow:hidden;
+  text-overflow:ellipsis; /* … si es muy largo */
+  flex: 0 1 220px;
+}
+.header-right{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  flex:1;
+  min-width: 0;
+}
+
 /* Logo */
 .brand_logo {
   height: 40px;
@@ -58,6 +79,8 @@ header[role="banner"] {
   display: block;
 }
 
+
+
 /* ====== CONTENEDOR PRINCIPAL ====== */
 #productsGrid {
   display: grid;
@@ -103,7 +126,6 @@ header[role="banner"] {
   color: #666;
   margin: 8px 0;
   display: -webkit-box;
-  
   -webkit-box-orient: vertical;
   overflow: hidden;
   min-height: 5rem;       /* reserva el alto de 2 líneas */
@@ -133,6 +155,14 @@ header[role="banner"] {
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 480px) {
+
+  .user-email{ max-width: 150px; }
+
+  #productsGrid{
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap:16px;
+    padding:16px;
+  }
   .search {
     order: 3;
     width: 100%;
@@ -144,7 +174,17 @@ header[role="banner"] {
   }
 
   .search_input {
-    min-width: 120px;
+    display: none;;
+  }
+  .search_button{
+    border-radius: 999px;   /* círculo */
+    padding: 6px;
+    background: #fff;
+  }
+
+  .search_button img{
+    width: 20px;
+    height: 20px;
   }
 }
 
