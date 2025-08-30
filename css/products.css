@@ -12,6 +12,24 @@ header[role="banner"] {
   z-index: 1000;
 }
 
+.user-email{
+  background:#fff;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:14px;
+  white-space:nowrap;     /* no parte en varias líneas */
+  flex-shrink:0;          /* no se achica (no “empuja” al buscador) */
+  max-width:260px;        /* controla el largo visual */
+  overflow:hidden;
+  text-overflow:ellipsis; /* … si es muy largo */
+}
+.header-right{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
 /* Logo */
 .brand_logo {
   height: 40px;
@@ -57,6 +75,8 @@ header[role="banner"] {
   width: auto;
   display: block;
 }
+
+
 
 /* ====== CONTENEDOR PRINCIPAL ====== */
 #productsGrid {
