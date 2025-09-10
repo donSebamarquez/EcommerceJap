@@ -154,7 +154,7 @@ header[role="banner"] {
 }
 
 /* ====== RESPONSIVE ====== */
-@media (max-width: 480px) {
+@media (max-width: 380px) {
 
   .user-email{ max-width: 150px; }
 

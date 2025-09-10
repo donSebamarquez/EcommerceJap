@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded",function(){
     if (!session) {
     // --- Redirección si no hay usuario ---
     // Localhost:
-    // window.location.href = "http://127.0.0.1:5500/login.html";
+     window.location.href = "http://127.0.0.1:5500/login.html";
 
     // GitHub Pages:
-    window.location.href = "https://donsebamarquez.github.io/EcommerceJap/login.html";
+    /*window.location.href = "https://donsebamarquez.github.io/EcommerceJap/login.html";*/
     return;
   }
 

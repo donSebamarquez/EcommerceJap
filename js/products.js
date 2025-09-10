@@ -3,15 +3,21 @@ const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json
 // === Config paginación ===
 const PAGE_SIZE = 4;         // cantidad por página (ajustá a gusto)
 let allProducts = [];        // todo lo que viene de la API
+let originalProducts = [];  //Copia inmutable del resultado de la ap
 let currentPage = 1;         // página actual
 
 // refs DOM
 const grid = document.getElementById("productsGrid");
 const alertBox = document.getElementById("alert");
 const paginationUl = document.getElementById("pagination");
+const searchInputProduct = document.getElementById("searchInput");
 
 // init
 document.addEventListener("DOMContentLoaded", loadProducts);
+
+/*Buscador Dinamico*/
+searchInputProduct.addEventListener("input",searchProduct)
+
 
 async function loadProducts() {
   grid.innerHTML = "<p>Cargando productos...</p>";
@@ -21,6 +27,7 @@ async function loadProducts() {
     if (!res.ok) throw new Error("No se pudo obtener la lista de productos");
     const data = await res.json();
     allProducts = Array.isArray(data.products) ? data.products : [];
+    originalProducts = allProducts.slice(); // Guardado original para restaurar
 
     if (!allProducts.length) {
       grid.innerHTML = "<p>No hay productos para mostrar.</p>";
@@ -132,4 +139,21 @@ function escapeHTML(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function searchProduct(){
+    
+    let searchInput = this.value.toLowerCase();
+
+    let searchArray = originalProducts.filter(product =>
+        (product.name || "").toLowerCase().includes(searchInput)
+    );
+    allProducts = searchInput ? searchArray : originalProducts.slice();
+
+    currentPage = 1;
+    renderPage(currentPage);
+    renderPagination(allProducts.length);
+
+    console.log(searchArray)
+    
 }
