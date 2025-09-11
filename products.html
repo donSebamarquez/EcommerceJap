@@ -17,37 +17,54 @@
 
   <!-- Header-->
   <header role="banner">
-    <!-- LADO IZQUIERDO: logo + burger -->
-    <div class="header-left">
-      <a href="index.html" class="brand" aria-label="Inicio">
-        <img src="img/byte-squad-logo.png" alt="Byte Squad" class="brand_logo">
-      </a>
+   <!-- Header (Bootstrap navbar) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-orange py-2" role="banner">
+  <div class="container-fluid">
+    <!-- Marca -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html" aria-label="Inicio">
+      <img src="img/byte-squad-logo.png" alt="Byte Squad" height="28" />
+      <span class="fw-bold">eMercado</span>
+    </a>
 
-      <!-- Botón menú (icono burger) -->
-      <button class="burger-btn" type="button" aria-label="Abrir menú">
-        <img src="img/burger-menu.svg" alt="" aria-hidden="true">
-      </button>
-    </div>
+    <!-- Burger -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <!-- CENTRO: carrito -->
-    <div class="header-center">
-      <a href="cart.html" class="cart-btn" aria-label="Ver carrito">
-        <img src="img/shopping-cart.svg" alt="" aria-hidden="true">
-      </a>
-    </div>
+    <div class="collapse navbar-collapse d-flex align-items-center" id="mainNav">
+      <!-- Izquierda: links -->
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+        <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-1" href="cart.html" aria-label="Ver carrito">
+            <img src="img/shopping-cart.svg" alt="" height="18" aria-hidden="true"> Carrito
+          </a>
+        </li>
+      </ul>
 
-    <!-- DERECHA: buscador -->
-    <div class="header-right">
-      <!-- usuario logeado -->
-      <span id="userEmail" class="user-email"></span>
+      <!-- CENTRO (lg+): buscador centrado -->
+      <form id="searchForm" class="d-none d-lg-flex mx-auto flex-grow-1" style="max-width:520px"
+            role="search" aria-label="Buscar productos">
+        <input id="searchInput"
+               class="form-control bg-transparent text-white border-light"
+               type="search" placeholder="Buscar..." aria-label="Buscar">
+      </form>
 
-      <form id="searchForm" class="search" role="search" aria-label="Buscar productos">
-        <input id="searchInput" class="search_input" type="search" placeholder="Buscar..." aria-label="Buscar">
-        <button class="search_button" type="submit" aria-label="Buscar">
-          <img src="img/search.svg" alt="" aria-hidden="true">
-        </button>
+      <!-- DERECHA: usuario -->
+      <span id="userEmail" class="navbar-text ms-3"></span>
+
+      <!-- MÓVIL (sm–md): buscador a lo ancho dentro del collapse -->
+      <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
+        <input id="searchInputMobile"
+               class="form-control bg-transparent text-white border-light"
+               type="search" placeholder="Buscar..." aria-label="Buscar">
       </form>
     </div>
+  </div>
+</nav>
 
   </header>
 

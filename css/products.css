@@ -1,98 +1,56 @@
-/* ===== HEADER minimalista ===== */
-header[role="banner"] {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px 20px;
-  background: #E08B00;   /* naranja prototipo */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* ===========================
+   NAVBAR NARANJA + BUSCADOR
+   =========================== */
+
+/* Fondo naranja prototipo */
+.bg-orange {
+  background-color: #E08B00 !important;
 }
 
-.user-email{
-  background:#fff;
-  border-radius:999px;
-  padding:6px 12px;
-  font-size:14px;
-  white-space:nowrap;     /* no parte en varias líneas */
-  flex-shrink:0;          /* no se achica (no “empuja” al buscador) */
-  max-width:260px;        /* controla el largo visual */
-  overflow:hidden;
-  text-overflow:ellipsis; /* … si es muy largo */
-  flex: 0 1 220px;
-}
-.header-right{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: nowrap;
-  flex:1;
-  min-width: 0;
-}
+/* Texto/links blancos para navbar-dark */
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-text { color: #fff; }
+.navbar-dark .nav-link:hover,
+.navbar-dark .nav-link:focus { color: #f3f3f3; }
 
-/* Logo */
-.brand_logo {
-  height: 40px;
-  width: auto;
-}
-
-/* Buscador */
-.search {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  max-width: 500px;
-  margin: 0 20px;
-}
-
-.search_input {
-  flex: 1;
-  height: 36px;
-  padding: 0 12px;
-  border: none;
-  border-radius: 999px 0 0 999px;
-  background: #fff;
-  outline: none;
-}
-
-.search_button {
-  height: 36px;
-  padding: 0 12px;
-  border: none;
-  border-radius: 0 999px 999px 0;
-  background: #fff;
-  cursor: pointer;
-}
-
-.search_button img {
-  width: 18px;
-  height: 18px;
-}
-
-/* Carrito */
-.cart-btn img {
+/* Logo dentro de la marca del navbar */
+.navbar-brand img {
   height: 28px;
   width: auto;
   display: block;
 }
 
+/* Buscador (desktop) */
+#searchInput.form-control,
+#searchInput.form-control:focus {
+  background-color: transparent;
+  color: #fff;
+  box-shadow: none;
+  border-color: rgba(255,255,255,.5);
+}
+#searchInput::placeholder { color: rgba(255,255,255,.7); }
 
+/* El form centrado y con ancho máximo */
+#searchForm { max-width: 520px; width: 100%; }
+@media (min-width: 1200px) { #searchForm { max-width: 640px; } }
 
-/* ====== CONTENEDOR PRINCIPAL ====== */
+/* ===========================
+   GRILLA DE PRODUCTOS
+   =========================== */
 #productsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); /* auto-fill */
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 24px;
   padding: 24px;
-  align-items: start;   /* estira la card a la misma altura */
-  justify-items: center;  /* centra cada card en su celda */
-  flex: 1;                /* clave: empuja la paginación hacia abajo */
+  align-items: start;
+  justify-items: center;
+  flex: 1;
 }
 
-/* ====== CARD DE PRODUCTO ====== */
+/* ===========================
+   CARD DE PRODUCTO
+   =========================== */
 .product-card {
   width: 100%;
   max-width: 360px;
@@ -103,24 +61,26 @@ header[role="banner"] {
   display: flex;
   flex-direction: column;
   padding: 12px 16px;
-  min-height: 360px; 
+  min-height: 360px;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-
 .product-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  cursor: pointer;
 }
 
 /* Imagen */
 .product-card_img {
   width: 100%;
-  height: 180px;       /* altura fija para consistencia */
-  object-fit: cover;   /* recorta sin deformar */
+  height: 180px;      
+  object-fit: cover;
   border-radius: 8px;
   background: #f3f5f8;
   margin-bottom: 8px;
 }
 
-/* Descripción: 2 líneas con “…” */
+/* Descripción */
 .product-card_desc {
   font-size: 0.9rem;
   color: #666;
@@ -128,17 +88,23 @@ header[role="banner"] {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 5rem;       /* reserva el alto de 2 líneas */
+  min-height: 5rem;
+}
+
+/* Foco accesible */
+.product-card:focus-within,
+.product-card:focus {
+  outline: 2px solid #0d6efd;
+  outline-offset: 2px;
 }
 
 /* Precio */
 .product-card_price {
   font-weight: bold;
   font-size: 1.1rem;
-  color: #2c3e50;
   margin-top: 12px;
   text-align: center;
-  background: #34a853;  /* verde pastilla */
+  background: #34a853;
   color: #fff;
   border-radius: 999px;
   padding: 6px 12px;
@@ -153,73 +119,142 @@ header[role="banner"] {
   margin-top: 6px;
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 380px) {
-
-  .user-email{ max-width: 150px; }
-
-  #productsGrid{
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap:16px;
-    padding:16px;
-  }
-  .search {
-    order: 3;
-    width: 100%;
-    max-width: none;
-    margin: 0;
-  }
-  .brand_logo{
-    height: 32px;
-  }
-
-  .search_input {
-    display: none;;
-  }
-  .search_button{
-    border-radius: 999px;   /* círculo */
-    padding: 6px;
-    background: #fff;
-  }
-
-  .search_button img{
-    width: 20px;
-    height: 20px;
-  }
-}
-
-/* ====== LAYOUT (footer abajo) ====== */
+/* ===========================
+   LAYOUT (footer abajo)
+   =========================== */
 html, body { height: 100%; }
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
+body { display: flex; flex-direction: column; }
 main {
-  min-height: auto !important; /* pisa el calc() del styles.css general */
+  min-height: auto !important;  /* pisa calc() de CSS global si lo hay */
   display: flex;
   flex-direction: column;
-  flex: 1;                     /* ocupa el alto disponible */
+  flex: 1;
 }
 
 /* Paginación */
-#paginationNav {
-  margin: 24px 0;
-}
-#pagination {                          
-  display: flex;
-  justify-content: center;
-}
+#paginationNav { margin: 24px 0; }
+#pagination { display: flex; justify-content: center; }
 
-/* ====== FOOTER ====== */
+/* ===========================
+   FOOTER
+   =========================== */
 footer {
   margin-top: 0;
   padding: 16px 0;
   text-align: center;
-  background: #f8f9fa;   /* leve gris, estilo Bootstrap */
+  background: #f8f9fa;
   color: #6b7280;
   border-top: 1px solid #e5e7eb;
 }
 footer p { margin: 4px 0; }
 footer a { color: inherit; text-decoration: underline; }
+
+/* ===========================
+   MEDIA QUERIES POR DISPOSITIVO
+   =========================== */
+
+/* ---------- 1) Laptop estándar: 1366 x 768 ---------- */
+@media screen and (min-width: 1200px) and (max-width: 1400px)
+       and (min-height: 700px) and (max-height: 820px) {
+
+  /* Navbar completo visible (links + usuario) */
+  .navbar .navbar-nav,
+  #userEmail { display: flex !important; }
+
+  /* Buscador cómodo/centrado */
+  #searchForm { max-width: 640px; margin-top: 0; }
+
+  /* Grilla cómoda en 1366 de ancho */
+  #productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .product-card_img { height: 200px; }
+}
+
+/* ---------- 2) Tablet en vertical: 768 x 1024 ---------- */
+@media screen and (min-width: 740px) and (max-width: 820px)
+       and (orientation: portrait) {
+
+  /* Ocultamos links y usuario: solo carrito + buscador */
+  .navbar .navbar-nav,
+  #userEmail { display: none !important; }
+
+  /* Permitir wrap y orden dentro del contenedor */
+  .navbar .navbar-collapse,
+  .navbar .container-fluid {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Reordenar: brand izq, carrito der */
+  .navbar-brand { order: 1; }
+  .nav-cart { order: 2; margin-left: auto; }
+
+  /* Buscador full-width en fila siguiente */
+  #searchForm {
+    order: 3;
+    flex: 1 0 100%;
+    max-width: none;
+    margin-top: .5rem;
+  }
+
+  /* Grilla adaptada a 768 de ancho */
+  #productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card_img { height: 190px; }
+}
+
+/* ---------- 3) Smartphone pequeño: 320 x 568 ---------- */
+@media screen and (max-width: 360px) and (max-height: 640px) {
+
+  /* Ocultar links y usuario: solo carrito + buscador */
+  .navbar .navbar-nav,
+  #userEmail { display: none !important; }
+
+  /* Permitir wrap y orden */
+  .navbar .navbar-collapse,
+  .navbar .container-fluid {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Reordenar: brand izq, carrito der */
+  .navbar-brand { order: 1; }
+  .nav-cart { order: 2; margin-left: auto; }
+
+  /* Buscador full-width en fila siguiente */
+  #searchForm {
+    order: 3;
+    flex: 1 0 100%;
+    max-width: none;
+    margin-top: .5rem;
+  }
+
+  /* Grilla compacta */
+  #productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .product-card_img { height: 160px; }
+  .product-card_desc { font-size: 0.88rem; }
+}
+
+/* ===========================
+   ACCESIBILIDAD EXTRA
+   =========================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
