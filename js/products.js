@@ -1,7 +1,5 @@
-const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
-
 // === Config paginación ===
-const PAGE_SIZE = 4;         // cantidad por página (ajustá a gusto)
+const PAGE_SIZE = 10;         // cantidad por página (ajustá a gusto)
 let allProducts = [];        // todo lo que viene de la API
 let originalProducts = [];  //Copia inmutable del resultado de la ap
 let currentPage = 1;         // página actual
@@ -11,6 +9,17 @@ const grid = document.getElementById("productsGrid");
 const alertBox = document.getElementById("alert");
 const paginationUl = document.getElementById("pagination");
 const searchInputProduct = document.getElementById("searchInput");
+
+// === URL DINÁMICA según la categoría seleccionada ===
+function buildApiUrlOrRedirect() {
+  const catId = localStorage.getItem("catID");      // misma key que setCatID
+  if (!catId) {
+    alert("No seleccionaste categoría. Volviendo al inicio…");
+    location = "index.html";
+    throw new Error("catID no encontrado");         // corta la ejecución
+  }
+  return `https://japceibal.github.io/emercado-api/cats_products/${catId}.json`;
+}
 
 // init
 document.addEventListener("DOMContentLoaded", loadProducts);
@@ -23,6 +32,7 @@ async function loadProducts() {
   grid.innerHTML = "<p>Cargando productos...</p>";
 
   try {
+    const API_URL = buildApiUrlOrRedirect(); 
     const res = await fetch(API_URL);
     if (!res.ok) throw new Error("No se pudo obtener la lista de productos");
     const data = await res.json();
@@ -107,6 +117,7 @@ function renderPagination(totalItems) {
 
 // ========== Card HTML ==========
 function cardHTML(p) {
+  const id    = p.id ?? "";
   const name  = escapeHTML(p.name || "");
   const desc  = escapeHTML(p.description || "");
   const img   = p.image || "";
@@ -114,7 +125,7 @@ function cardHTML(p) {
   const sold  = `${p.soldCount ?? 0} vendidos`;
 
   return `
-    <article class="product-card">
+    <article class="product-card" data-prod-id="${id}" role="button" tabindex="0">
       <div class="product-card_head">
         <span class="product-card_badge">${name}</span>
       </div>
