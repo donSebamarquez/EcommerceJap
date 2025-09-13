@@ -38,7 +38,7 @@ async function loadProducts() {
     const data = await res.json();
     allProducts = Array.isArray(data.products) ? data.products : [];
     originalProducts = allProducts.slice(); // Guardado original para restaurar
-
+  
     if (!allProducts.length) {
       grid.innerHTML = "<p>No hay productos para mostrar.</p>";
       renderPagination(0);
@@ -157,8 +157,8 @@ function searchProduct(){
     let searchInput = this.value.toLowerCase();
 
     let searchArray = originalProducts.filter(product =>
-        (product.name || "").toLowerCase().includes(searchInput)
-    );
+        (product.name || "").toLowerCase().includes(searchInput) 
+      || (product.description || "").toLowerCase().includes(searchInput));
     allProducts = searchInput ? searchArray : originalProducts.slice();
 
     currentPage = 1;
