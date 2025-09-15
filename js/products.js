@@ -3,12 +3,20 @@ const API_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json
 // === Config paginación ===
 const PAGE_SIZE = 4;         // cantidad por página (ajustá a gusto)
 let allProducts = [];        // todo lo que viene de la API
+let filteredProducts = [];   // productos filtrados/ordenados para mostrar
 let currentPage = 1;         // página actual
 
 // refs DOM
 const grid = document.getElementById("productsGrid");
 const alertBox = document.getElementById("alert");
 const paginationUl = document.getElementById("pagination");
+
+// refs filtros
+const minPriceInput = document.getElementById("minPrice");
+const maxPriceInput = document.getElementById("maxPrice");
+const filterBtn = document.getElementById("filterBtn");
+const clearFilterBtn = document.getElementById("clearFilterBtn");
+const sortSelect = document.getElementById("sortOptions");
 
 // init
 document.addEventListener("DOMContentLoaded", loadProducts);
@@ -21,6 +29,7 @@ async function loadProducts() {
     if (!res.ok) throw new Error("No se pudo obtener la lista de productos");
     const data = await res.json();
     allProducts = Array.isArray(data.products) ? data.products : [];
+    filteredProducts = [...allProducts];
 
     if (!allProducts.length) {
       grid.innerHTML = "<p>No hay productos para mostrar.</p>";
@@ -30,7 +39,8 @@ async function loadProducts() {
 
     currentPage = 1;
     renderPage(currentPage);
-    renderPagination(allProducts.length);
+    renderPagination(filteredProducts.length);
+    attachEvents();
 
   } catch (err) {
     console.error(err);
@@ -43,11 +53,69 @@ async function loadProducts() {
   }
 }
 
+// ========== Eventos filtros/orden ==========
+function attachEvents() {
+  if (filterBtn) {
+    filterBtn.addEventListener("click", () => {
+      applyFilters();
+      currentPage = 1;
+      renderPage(currentPage);
+      renderPagination(filteredProducts.length);
+    });
+  }
+
+  if (clearFilterBtn) {
+    clearFilterBtn.addEventListener("click", () => {
+      minPriceInput.value = "";
+      maxPriceInput.value = "";
+      filteredProducts = [...allProducts];
+      applySort();
+      currentPage = 1;
+      renderPage(currentPage);
+      renderPagination(filteredProducts.length);
+    });
+  }
+
+  if (sortSelect) {
+    sortSelect.addEventListener("change", () => {
+      applySort();
+      currentPage = 1;
+      renderPage(currentPage);
+      renderPagination(filteredProducts.length);
+    });
+  }
+}
+
+// ========== Filtros ==========
+function applyFilters() {
+  const min = parseFloat(minPriceInput.value) || 0;
+  const max = parseFloat(maxPriceInput.value) || Infinity;
+
+  filteredProducts = allProducts.filter(p => {
+    return p.cost >= min && p.cost <= max;
+  });
+
+  applySort();
+}
+
+// ========== Orden ==========
+function applySort() {
+  const sortValue = sortSelect ? sortSelect.value : "";
+
+  if (sortValue === "priceAsc") {
+    filteredProducts.sort((a, b) => a.cost - b.cost);
+  } else if (sortValue === "priceDesc") {
+    filteredProducts.sort((a, b) => b.cost - a.cost);
+  } else if (sortValue === "relevance") {
+    filteredProducts.sort((a, b) => b.soldCount - a.soldCount);
+  }
+}
+
 // ========== Render lista (solo la página pedida) ==========
 function renderPage(page) {
   const start = (page - 1) * PAGE_SIZE;
   const end = start + PAGE_SIZE;
-  const slice = allProducts.slice(start, end);
+  const slice = filteredProducts.slice(start, end);
 
   grid.innerHTML = slice.map(cardHTML).join("");
 }
@@ -72,7 +140,7 @@ function renderPagination(totalItems) {
       if (disabled || page === currentPage) return;
       currentPage = page;
       renderPage(currentPage);
-      renderPagination(allProducts.length);
+      renderPagination(filteredProducts.length);
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
