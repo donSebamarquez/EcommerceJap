@@ -67,6 +67,8 @@ function renderPage(page) {
   const slice = allProducts.slice(start, end);
 
   grid.innerHTML = slice.map(cardHTML).join("");
+
+  guardarProductId(grid)
 }
 
 // ========== Render paginación < 1 2 3 > ==========
@@ -154,17 +156,35 @@ function escapeHTML(str) {
 
 function searchProduct(){
     
-    let searchInput = this.value.toLowerCase();
+    let searchProductInput = this.value.toLowerCase();
 
-    let searchArray = originalProducts.filter(product =>
-        (product.name || "").toLowerCase().includes(searchInput) 
-      || (product.description || "").toLowerCase().includes(searchInput));
-    allProducts = searchInput ? searchArray : originalProducts.slice();
+    let filteredArray = originalProducts.filter(product =>
+        (product.name || "").toLowerCase().includes(searchProductInput) || 
+        (product.description || "").toLowerCase().includes(searchProductInput));
+    
+    allProducts = searchProductInput ? filteredArray : originalProducts.slice();
 
     currentPage = 1;
     renderPage(currentPage);
     renderPagination(allProducts.length);
 
-    console.log(searchArray)
+}
+
+function guardarProductId(gridElement){
     
+    const cards = gridElement.querySelectorAll(".product-card");
+    const ProductId = "ProductId";
+    
+    cards.forEach(product =>{
+        
+        const ID = product.getAttribute("data-prod-id");
+        product.addEventListener("click",function(){
+
+            localStorage.setItem(ProductId,ID);
+            window.location.href = "product-info.html";
+
+        })
+    })
+    
+
 }
