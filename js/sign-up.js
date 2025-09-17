@@ -8,18 +8,18 @@ signupFora.addEventListener('submit', (e) => {
     const Email = document.querySelector('#Email').value
     const Contraseña = document.querySelector('#Contraseña').value
 
-    const Users = JSON.parse(localStorage.getItem('users')) || []
+    const userName = JSON.parse(localStorage.getItem('users')) || []
 
     // Verificar existencia de usuario
-    const isUserRegistered = Users.find(user => user.email === Email)
+    const isUserRegistered = userName.find(user => user.email === Email)
     if (isUserRegistered) {
         alert('El usuario ya está registrado')
         return
     }
 
     // Usuario guardado
-    Users.push({ name: Usuario, email: Email, password: Contraseña })
-    localStorage.setItem('users', JSON.stringify(Users))
+    userName.push({ name: Usuario, email: Email, password: Contraseña })
+    localStorage.setItem('users', JSON.stringify(userName))
 
     // Usuario redirige al login
     alert('Registro Exitoso!')
