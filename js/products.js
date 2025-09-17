@@ -10,6 +10,13 @@ const alertBox = document.getElementById("alert");
 const paginationUl = document.getElementById("pagination");
 const searchInputProduct = document.getElementById("searchInput");
 
+// refs controles
+const minPriceInput = document.getElementById("minPrice");
+const maxPriceInput = document.getElementById("maxPrice");
+const filterBtn = document.getElementById("filterBtn");
+const clearFilterBtn = document.getElementById("clearFilterBtn");
+const sortSelect = document.getElementById("sortOptions");
+
 // === URL DINÁMICA según la categoría seleccionada ===
 function buildApiUrlOrRedirect() {
   const catId = localStorage.getItem("catID");      // misma key que setCatID
@@ -188,3 +195,42 @@ function guardarProductId(gridElement){
     
 
 }
+
+// funciones filtro y orden
+function applyPriceAndSortFilters() {
+  const min = parseFloat(minPriceInput.value) || 0;
+  const max = parseFloat(maxPriceInput.value) || Infinity;
+
+  // Filtrar por precio
+  allProducts = originalProducts.filter(p => p.cost >= min && p.cost <= max);
+
+  // Aplicar orden
+  const sortValue = sortSelect ? sortSelect.value : "";
+  if (sortValue === "priceAsc") {
+    allProducts.sort((a, b) => a.cost - b.cost);
+  } else if (sortValue === "priceDesc") {
+    allProducts.sort((a, b) => b.cost - a.cost);
+  } else if (sortValue === "relevance") {
+    allProducts.sort((a, b) => b.soldCount - a.soldCount);
+  }
+
+  // Renderizar
+  currentPage = 1;
+  renderPage(currentPage);
+  renderPagination(allProducts.length);
+}
+
+// eventos controles
+filterBtn.addEventListener("click", applyPriceAndSortFilters);
+
+clearFilterBtn.addEventListener("click", () => {
+  minPriceInput.value = "";
+  maxPriceInput.value = "";
+  sortSelect.value = "priceAsc"; // opción por defecto
+  allProducts = originalProducts.slice();
+  currentPage = 1;
+  renderPage(currentPage);
+  renderPagination(allProducts.length);
+});
+
+sortSelect.addEventListener("change", applyPriceAndSortFilters);
