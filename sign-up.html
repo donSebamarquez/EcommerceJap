@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sign-up.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="sign-up-container">
+        <h1>E-COMMERCE jaP</h1>
+
+        <form id="signupFora" class="sign-up">
+            <h2>Registrate</h2>
+
+            <input type="text" id="Usuario" placeholder="Usuario" class="user__input" required />
+            <input type="email " id="Email" placeholder="@E-mail" class="user__input" required />
+            <input type="password" id="Contraseña" placeholder="Contraseña" class="password__input" required />
+
+            <button type="submit" class="login__button">Registrarme</button>
+            <button type="button" class="btn-google">Iniciar con Google</button>
+
+            <div class="sign-up__error"></div>
+            <div class="links">
+                <a href="login.html">Inicia Sesión</a>
+            </div>
+        </form>
+    </div>
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-end"><a href="#">Volver arriba</a></p>
+            <p>Este sitio forma parte de
+                <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/sign-up.js"></script>
+</body>
+
+</html>
