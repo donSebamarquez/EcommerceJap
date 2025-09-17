@@ -34,28 +34,39 @@ async function cargarProducto(){
 }
 
 
-function mostrarProducto(producto){
+function mostrarProducto(producto) {
+    
+    crearElemento("h2", producto.name, "product__name");
+    crearElemento("p", producto.description, "product__description");
+    crearElemento("p", `${producto.currency} ${producto.cost}`, "product__price");
+    crearElemento("p", `Vendidos: ${producto.soldCount}`, "product__sold");
+    crearElemento("p", `Categoría: ${producto.category}`, "product__category");
 
-    crearElemento("h2",producto.name,"product__name")
-    
-    crearElemento("p",producto.description,"product__description")
-    
-    crearElemento("p",producto.currency,"product__currency")
-    
-    crearElemento("p",producto.cost,"product__cost")
-    
-    crearElemento("p",producto.soldCount,"product__cost")
-    
-    crearElemento("p",producto.category,"product__category")
+    const gallery = document.createElement("div");
+    gallery.className = "product__gallery";
 
-    const arrayImages = producto.images;
-    arrayImages.forEach(imgSrc =>{
-        let image = document.createElement("img");
-        image.src = imgSrc
-        image.className = "product__img"
-        contenedor.appendChild(image)
-    }) 
-    
+    const mainImg = document.createElement("img");
+    mainImg.src = producto.images[0];
+    mainImg.className = "product__gallery--main";
+    gallery.appendChild(mainImg);
+
+    const extraImages = document.createElement("div");
+    extraImages.className = "product__gallery--secondaries";
+
+    producto.images.forEach(imgSrc => {
+        const secondaryImage = document.createElement("img");
+        secondaryImage.src = imgSrc;
+        secondaryImage.className = "product__gallery--secondary";
+
+        secondaryImage.addEventListener("click", () => {
+            mainImg.src = imgSrc;
+        });
+
+        extraImages.appendChild(secondaryImage);
+    });
+
+    gallery.appendChild(extraImages);
+    contenedor.appendChild(gallery);
 }
 
 
@@ -64,5 +75,4 @@ function crearElemento(tag, text, className) {
     element.textContent = text;
     element.className = className;
     contenedor.appendChild(element);
-    return element;
 }
