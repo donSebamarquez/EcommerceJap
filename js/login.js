@@ -1,71 +1,33 @@
-let loginBlock = document.querySelector(".login");
-let btnLogin = loginBlock.querySelector(".login__button");
-let userNameField = loginBlock.querySelector(".user__input");
-let userPassField = loginBlock.querySelector(".password__input");
-let errorAlert = loginBlock.querySelector(".login__error");
-let alertText = ``;
+const login = document.querySelector('#login')
+const loginError = document.querySelector('#loginError') // Muestra mensaje de contraseña o usuario incorrecto abajo de los input
 
-let userName = "";
-let userPassword = "";
+login.addEventListener('submit', (e) => {
+    e.preventDefault()
 
-function userSession(user,password){
+    // Obtiene el valor actual de los campos seleccionados
+    const email = document.querySelector('#email').value
+    const password = document.querySelector('#password').value
 
-    if(user && password){
-        localStorage.setItem("userName",user)
+    // Lee lo guardado en LocalStorage y lo convierte en JSON, si no hay usa array vacio 
+    const Users = JSON.parse(localStorage.getItem('users')) || []
 
-        /* Si vas a trabajar en local descomentar el localhost y comenta el location hacia el github*/
-        window.location.href = "http://127.0.0.1:5500/";
-
-        /*Si vas a subir el archivo comenta el localhost y descomenta el location de abajo*/ 
-        //window.location.href = "https://donsebamarquez.github.io/EcommerceJap/";
-
-        resetValues();
-        errorAlert.innerHTML = "";
+      // Verifica si el email existe
+    const userExists = Users.find(user => user.email === email)
+    if (!userExists) {
+        loginError.textContent = 'Este usuario no está registrado'
+        return
     }
-
-}
-
-function user(user){
-    if(user.length < 6){
-console.log ("error")
-        errorMessage("usuario", 6);
-        resetValues();
-        return;
-    }
-
-    return user;
-
-}
-
-function password(pass){
-    if(pass.length < 6){
-        errorMessage("contraseña", 6);
-        resetValues();
-        return;
-    }
-
-    return true;
-
-}
-
-function errorMessage(field,length){
     
-    alertText = `
-            <p>El campo de ${field} no puede ser inferior a ${length} caracteres <br></p>
-        `
-        errorAlert.innerHTML = alertText
-}
+    // si el email y/o contraseña no son correctos no deja entrar, muestra mensaje del error
+    const validUser = Users.find(user => user.password === password)
+    if (!validUser) {
+        loginError.textContent = 'Contraseña Incorrecta'
+        return
+    }
 
-function resetValues(){
-    userNameField.value = "";
-    userPassField.value = "";
-}
-
-btnLogin.addEventListener("click",()=>{
-
-    userName = userNameField.value
-    userPassword = userPassField.value
-
-    userSession(user(userName),password(userPassword));
-
+    // Si son correctos aparece cartel y entra a index.html
+        loginError.textContent = `Bienvenid@ ${validUser.name}`
+    alert(`Bienvenid@ ${validUser.name}`)
+    localStorage.setItem('login_success', JSON.stringify(validUser))
+    window.location.href = 'index.html'
 })
