@@ -193,7 +193,6 @@ function guardarProductId(gridElement){
         })
     })
     
-
 }
 
 // funciones filtro y orden
