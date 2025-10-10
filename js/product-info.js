@@ -1,92 +1,59 @@
 
 const keyProduct = localStorage.getItem("ProductId");
 const url = `https://japceibal.github.io/emercado-api/products/${keyProduct}.json`
+const commentariesUrl =`https://japceibal.github.io/emercado-api/products_comments/${keyProduct}.json`
 
-let contenedor = document.querySelector(".product");
+let main = document.querySelector(".main")
 
-let relatedProducts = document.querySelector(".related")
+let container = main.querySelector(".product");
+
+let relatedProducts = main.querySelector(".related")
+
+let form = main.querySelector(".form")
 
 document.addEventListener("DOMContentLoaded",cargarProducto)
 
 
-async function cargarProducto(){
-    
+async function cargarProducto() {
+  
     try {
-    
-        const res = await fetch(url);
-        
-        if (!res.ok) {
-            throw new Error(`Error HTTP: ${res.status}`);
-        }
 
-        const product = await res.json();
-        console.log(product)
-        mostrarProducto(product);
+    const productRes = await fetch(url);
+    if (!productRes.ok) {
+      throw new Error("Error al cargar los datos del producto");
     }
-    
-    catch (e) {
-        console.error("Error al cargar el producto:", e);
 
-        contenedor.innerHTML = `
-            <p class="product__error">
-                Ocurrió un error al cargar el producto. Intenta nuevamente más tarde.
-            </p>
-        `;  
-}
+    const commentariesRes = await fetch(commentariesUrl);
+    if (!commentariesRes.ok) {
+      throw new Error("Error al cargar los comentarios del producto");
+    }
 
-}
+    const product = await productRes.json();
+    const commentaries = await commentariesRes.json();
 
+    showProduct(product, commentaries);
+  } 
 
-function mostrarProducto(producto) {
-    
-    crearElemento("h2", producto.name, "product__name",contenedor);
-    crearElemento("p", producto.description, "product__description",contenedor);
-    crearElemento("p", `${producto.currency} ${producto.cost}`, "product__price",contenedor);
-    crearElemento("p", `Vendidos: ${producto.soldCount}`, "product__sold",contenedor);
-    crearElemento("p", `Categoría: ${producto.category}`, "product__category",contenedor);
-
-    const gallery = document.createElement("div");
-    gallery.className = "product__gallery";
-
-    const mainImg = document.createElement("img");
-    mainImg.src = producto.images[0];
-    mainImg.className = "product__gallery--main";
-    gallery.appendChild(mainImg);
-
-    const extraImages = document.createElement("div");
-    extraImages.className = "product__gallery--secondaries";
-
-    producto.images.forEach(imgSrc => {
-        const secondaryImage = document.createElement("img");
-        secondaryImage.src = imgSrc;
-        secondaryImage.className = "product__gallery--secondary";
-
-        secondaryImage.addEventListener("click", () => {
-            mainImg.src = imgSrc;
-        });
-
-        extraImages.appendChild(secondaryImage);
-    });
-    
-    gallery.appendChild(extraImages);
-    contenedor.appendChild(gallery);
-
-    showRelatedProducts(producto.relatedProducts)
-
+  catch (e) {
+    console.error(e.message);
+    container.innerHTML = `
+      <p class="product__error">${e.message}. Intenta nuevamente más tarde.</p>
+    `;
+  }
 }
 
 
-function crearElemento(tag, text, className,container) {
-    const element = document.createElement(tag);
-    element.textContent = text;
-    element.className = className;
-    container.appendChild(element);
+
+function showProduct(product,commentaries) {
+
+    createProduct(product)
+    showRelatedProducts(product.relatedProducts)
+    showCommentaries(commentaries);
+
 }
-
-
 
 function showRelatedProducts(products){
-    const ProductId = "ProductId";
+    const productId = "ProductId";
 
     products.forEach( product =>{
 
@@ -100,7 +67,7 @@ function showRelatedProducts(products){
         image.src = product.image;
 
         image.addEventListener("click",function(){
-            localStorage.setItem(ProductId,product.id);
+            localStorage.setItem(productId,product.id);
             window.location.href = "product-info.html";
         })
 
@@ -110,4 +77,99 @@ function showRelatedProducts(products){
 
     })
 
+}
+
+function showCommentaries(commentaries){
+    
+    let commentsContainer = document.createElement("div");
+    main.appendChild(commentsContainer);
+    console.log(commentaries)
+    
+    commentaries.forEach(commentary =>{
+
+        crearElemento("p", commentary.description, "commentaries", commentsContainer);
+        crearElemento("p", commentary.user, "commentaries", commentsContainer);
+        crearElemento("p", commentary.dateTime, "commentaries", commentsContainer);
+        /*Funcion para crear y mostrar las estrellas creadas */
+        /*let stars = stars(commentary.score);*/
+        
+        
+    })
+
+
+}
+
+function stars(stars){
+
+    let starsContainer = crearElemento("div",null,"container__stars",);
+
+    let fullStars = stars; 
+    let emptyStars = 5 - score;
+
+    for(let x = 0; x < fullStars;x++){
+
+        let fullStar = createComponent("i",null,"bi bi-star-fill");
+        starsContainer.appendChild(fullStar);
+
+    }
+    
+    for(let y = 0; y < emptyStars;y++){
+
+        let emptyStar = createComponent("i",null,"bi bi-star")
+        starsContainer.appendChild(emptyStar);
+
+    }
+        
+    return starsContainer;
+
+
+}
+
+function addCommentary(){
+
+
+
+}
+
+function createProduct(product){
+    
+    crearElemento("h2", product.name, "product__name",container);
+    crearElemento("p", product.description, "product__description",container);
+    crearElemento("p", `${product.currency} ${product.cost}`, "product__price",container);
+    crearElemento("p", `Vendidos: ${product.soldCount}`, "product__sold",container);
+    crearElemento("p", `Categoría: ${product.category}`, "product__category",container);
+
+    const gallery = document.createElement("div");
+    gallery.className = "product__gallery";
+
+    const mainImg = document.createElement("img");
+    mainImg.src = product.images[0];
+    mainImg.className = "product__gallery--main";
+    gallery.appendChild(mainImg);
+
+    const extraImages = document.createElement("div");
+    extraImages.className = "product__gallery--secondaries";
+
+    product.images.forEach(imgSrc => {
+        const secondaryImage = document.createElement("img");
+        secondaryImage.src = imgSrc;
+        secondaryImage.className = "product__gallery--secondary";
+
+        secondaryImage.addEventListener("click", () => {
+            mainImg.src = imgSrc;
+        });
+
+        extraImages.appendChild(secondaryImage);
+    });
+    
+    gallery.appendChild(extraImages);
+    container.appendChild(gallery);
+
+}
+
+function crearElemento(tag, text, className,container) {
+    const element = document.createElement(tag);
+    element.textContent = text;
+    element.className = className;
+    container.appendChild(element);
 }
