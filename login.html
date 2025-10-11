@@ -4,7 +4,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
+
+  <title>E-Mercado - Inicia Sesion</title>
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -13,23 +14,28 @@
 
 <body>
   <div class="login-container">
+
     <!-- Imagen -->
     <div class="img-container">
       <img src="img/login.jpeg" alt="Auto" />
     </div>
 
     <!-- Formulario login -->
-    <div class="login">
-      <h2>Bienvenid@</h2>
-      <input type="text" placeholder="Usuario" class="user__input" />
-      <input type="password" placeholder="Contraseña" class="password__input" />
+    <form class="login" id="login">
+      <h1>E-COMMERCE jaP</h1>
+      <h2>Inicia Sesion con tus datos</h2>
+
+      <input type="text" id="email" placeholder="E-mail" class="user__input" />
+      <input type="password" id="password" placeholder="Contraseña" class="password__input" />
+      <div id="loginError" class="loginError"></div>
+
       <button class="login__button">Ingresar</button>
       <button class="btn-google">Iniciar con Google</button>
-      <div class="login__error"></div>
-      <div class="links">
-        <a href="#">Sign up</a>
-      </div>
-    </div>
+
+      <a href="sign-up.html">Registrate</a>
+      <div class="links"></div>
+
+    </form>
   </div>
 
   <footer class="text-muted">
@@ -37,7 +43,7 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de 
+      <p>Este sitio forma parte de
         <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
       </p>
     </div>
@@ -45,4 +51,5 @@
 
   <script src="js/login.js"></script>
 </body>
+
 </html>

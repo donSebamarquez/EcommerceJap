@@ -34,11 +34,21 @@
   height: 100%; /* ocupa toda la altura de la columna */
 }
 
+.login h1 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  animation: fadeDown 0.6s ease-in-out;
+}
+
 /* Título Bienvenid@ */
 .login h2 {
   color: white;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 18px;
   margin-bottom: 30px;
   font-family: 'Raleway', sans-serif;
   text-align: center;
@@ -58,6 +68,13 @@
   background-color: #f0b89b;
   color: #8a4c3b;
   box-sizing: border-box;
+}
+
+.loginError {
+  color: #ff3333;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: left;
 }
 
 /* Botón Ingresar */

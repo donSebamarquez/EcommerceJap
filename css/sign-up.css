@@ -78,6 +78,13 @@
   transition: box-shadow 0.2s ease, transform 0.1s ease;
 }
 
+.signup__error {
+  color: #ff3333;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  text-align: left;
+}
+
 .user__input:focus,
 .password__input:focus {
   box-shadow: 0 0 8px rgba(255, 180, 150, 0.8);
