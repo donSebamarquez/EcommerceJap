@@ -233,3 +233,23 @@ clearFilterBtn.addEventListener("click", () => {
 });
 
 sortSelect.addEventListener("change", applyPriceAndSortFilters);
+
+// ================================
+// MODO CLARO / OSCURO
+// ================================
+const themeToggle = document.getElementById("themeToggle");
+const body = document.body;
+
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark-mode");
+  if (themeToggle) themeToggle.textContent = "Modo claro";
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    const isDark = body.classList.contains("dark-mode");
+    themeToggle.textContent = isDark ? "Modo claro" : "Modo oscuro";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+}
