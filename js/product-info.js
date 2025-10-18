@@ -228,3 +228,84 @@ function crearElemento(tag, text, className, container) {
     element.className = className;
     container.appendChild(element);
 }
+
+// ================================
+// MODO CLARO / OSCURO (DINÁMICO)
+// ================================
+
+const themeToggle = document.getElementById("themeToggle");
+const body = document.body;
+
+// --- función modo oscuro ---
+function aplicarModoOscuro() {
+  body.classList.add("dark-mode");
+
+  // Fondo general
+  body.style.backgroundColor = "#0b0f1a";
+  body.style.color = "#e2e8f0";
+
+  // Card del producto
+  document.querySelectorAll(".product").forEach(el => {
+    el.style.backgroundColor = "#101b33";
+    el.style.color = "#f1f5f9";
+    el.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.4)";
+  });
+
+  // Productos relacionados
+  document.querySelectorAll(".related__item").forEach(el => {
+    el.style.backgroundColor = "#101b33";
+    el.style.color = "#f1f5f9";
+    el.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.4)";
+  });
+
+  // Comentarios
+  document.querySelectorAll(".comment-block").forEach(el => {
+    el.style.backgroundColor = "#1e293b";
+    el.style.color = "#e2e8f0";
+  });
+
+  // Navbar (si existe)
+  const navbar = document.querySelector("nav.navbar");
+  if (navbar) navbar.style.backgroundColor = "#1e3a8a";
+
+  // Footer (si existe)
+  const footer = document.querySelector("footer");
+  if (footer) {
+    footer.style.backgroundColor = "#0f172a";
+    footer.style.color = "#cbd5e1";
+  }
+
+  if (themeToggle) themeToggle.textContent = "Modo claro";
+}
+
+// --- función modo claro ---
+function aplicarModoClaro() {
+  body.classList.remove("dark-mode");
+
+  // Limpiar estilos en línea
+  body.removeAttribute("style");
+  document.querySelectorAll(".product, .related__item, .comment-block, footer, nav.navbar").forEach(el => {
+    el.removeAttribute("style");
+  });
+
+  if (themeToggle) themeToggle.textContent = "Modo oscuro";
+}
+
+// --- Al cargar, aplicar el tema guardado ---
+if (localStorage.getItem("theme") === "dark") {
+  aplicarModoOscuro();
+}
+
+// --- Evento para cambiar tema ---
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const isDark = body.classList.contains("dark-mode");
+    if (isDark) {
+      aplicarModoClaro();
+      localStorage.setItem("theme", "light");
+    } else {
+      aplicarModoOscuro();
+      localStorage.setItem("theme", "dark");
+    }
+  });
+}

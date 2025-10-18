@@ -1,3 +1,17 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --jumbotron-bg: #53C0FB;
+  --card-bg: #f8f9fa;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --jumbotron-bg: #1e1e1e;
+  --card-bg: #1a1a1a;
+}
+
 .jumbotron,
 .card-body,
 .container,

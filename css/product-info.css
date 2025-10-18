@@ -1,3 +1,6 @@
+/* ===========================
+   ESTILO GENERAL (MODO CLARO)
+   =========================== */
 body {
   background: #f5f5f5;
   color: #333;
@@ -6,6 +9,9 @@ body {
   padding: 0;
 }
 
+/* ===========================
+   PRODUCTO PRINCIPAL
+   =========================== */
 .product {
   max-width: 1100px;
   margin: 4rem auto;
@@ -18,7 +24,6 @@ body {
   gap: 2.5rem;
   animation: fadeIn 0.5s ease;
 }
-
 
 .product__gallery {
   display: flex;
@@ -88,7 +93,6 @@ body {
   font-size: 0.95rem;
 }
 
-
 .product__error {
   color: #c62828;
   background: #fdeaea;
@@ -98,13 +102,14 @@ body {
   text-align: center;
 }
 
-
+/* ===========================
+   RESPONSIVIDAD
+   =========================== */
 @media (max-width: 800px) {
   .product {
     grid-template-columns: 1fr;
     text-align: center;
   }
-
   .product__gallery {
     align-items: center;
   }
@@ -115,14 +120,15 @@ body {
     opacity: 0;
     transform: translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-
+/* ===========================
+   PRODUCTOS RELACIONADOS
+   =========================== */
 .related {
   margin-top: 3rem;
   padding: 2rem;
@@ -134,6 +140,7 @@ body {
 .related__title {
   display: flex;
   justify-content: center;
+  color: #222;
 }
 
 .related__item {
@@ -168,6 +175,9 @@ body {
   border-radius: 0.5rem;
 }
 
+/* ===========================
+   ESTRELLAS
+   =========================== */
 .product {
   position: relative;
 }
@@ -194,6 +204,9 @@ body {
   left: 15px;
 }
 
+/* ===========================
+   COMENTARIOS
+   =========================== */
 .comment-modal {
   position: fixed;
   top: 0;
@@ -225,11 +238,16 @@ body {
 
 .comment-modal-content button {
   padding: 8px;
-  background: blue;
+  background: #2563eb;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.comment-modal-content button:hover {
+  background: #1d4ed8;
 }
 
 .comments-container {
@@ -253,8 +271,13 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
   flex-shrink: 0;
-  object-fit: cover;
 }
 
 .comment-content {
@@ -284,15 +307,97 @@ body {
   color: gold;
 }
 
-.comment-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: white;
-  flex-shrink: 0;
+/* ===========================
+   MODO OSCURO PRODUCT-INFO
+   =========================== */
+body.dark-mode {
+  background: #0d1117;
+  color: #e6edf3;
+}
+
+/* Card principal */
+body.dark-mode .product {
+  background: #111827;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  color: #e6edf3;
+}
+
+/* Texto */
+body.dark-mode .product__name {
+  color: #f0f6fc;
+}
+body.dark-mode .product__description {
+  color: #9fb3c8;
+}
+body.dark-mode .product__category,
+body.dark-mode .product__sold {
+  color: #94a3b8;
+}
+
+/* Precio */
+body.dark-mode .product__price {
+  color: #2ecc71;
+}
+
+/* Galería */
+body.dark-mode .product__gallery--main {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+body.dark-mode .product__gallery--secondary {
+  opacity: 0.7;
+  border-color: #2d3a50;
+}
+body.dark-mode .product__gallery--secondary:hover {
+  border-color: #58a6ff;
+  opacity: 1;
+}
+body.dark-mode .product__gallery--secondary.active {
+  border-color: #58a6ff;
+}
+
+/* Productos relacionados */
+body.dark-mode .related__title {
+  color: #f0f6fc;
+}
+body.dark-mode .related__item {
+  background: #111827;
+  color: #e6edf3;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+}
+body.dark-mode .related__item:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+body.dark-mode .related__name {
+  color: #9fb3c8;
+}
+
+/* Comentarios */
+body.dark-mode .comment-block {
+  background: #1e293b;
+  color: #e6edf3;
+}
+body.dark-mode .comment-meta {
+  color: #94a3b8;
+}
+body.dark-mode .comment-modal-content {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+body.dark-mode .comment-modal-content button {
+  background: #2563eb;
+}
+
+/* Navbar y footer */
+body.dark-mode nav.navbar {
+  background-color: #161b22 !important;
+}
+body.dark-mode footer {
+  background-color: #0f172a;
+  color: #8b949e;
+}
+body.dark-mode footer a {
+  color: #58a6ff;
+}
+body.dark-mode footer a:hover {
+  text-decoration: underline;
 }
