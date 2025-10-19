@@ -1,0 +1,21 @@
+:root{
+    --white: white;
+    --product-price: #2a7a2a;
+    --main-color: #fff;
+    --navbar-color: #E08B00;
+    --font-color : #666;
+    --card-color: #fff;
+    --font-color-hover:#f3f3f3;
+}
+
+[data-theme="dark"] {
+    
+    --white: white;
+    --product-price: #2a7a2a;
+    --main-color: #0a0f1a;
+    --navbar-color: #3560d6 ;
+    --card-color :#1e3a8a;
+    --card-color-hover:#2f54b9;
+    --font-color : #f6f6f6;
+    --font-color-hover:#f3f3f3;
+}

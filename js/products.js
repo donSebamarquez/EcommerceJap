@@ -87,7 +87,7 @@ function renderPagination(totalItems) {
 
   const makeItem = (label, page, disabled = false, active = false) => {
     const li = document.createElement("li");
-    li.className = `page-item${disabled ? " disabled" : ""}${active ? " active" : ""}`;
+    li.className = `page-item ${disabled ? " disabled" : ""}${active ? " active" : ""}`;
 
     const a = document.createElement("a");
     a.className = "page-link";
@@ -134,20 +134,20 @@ function cardHTML(p) {
   const sold  = `${p.soldCount ?? 0} vendidos`;
 
   return `
-    <article class="product-card" data-prod-id="${id}" role="button" tabindex="0">
-      <div class="product-card_head">
-        <span class="product-card_badge">${name}</span>
+    <article class="product" data-prod-id="${id}" role="button" tabindex="0">
+      <div class="product__header">
+        <span class="product__badge">${name}</span>
       </div>
 
-      <img class="product-card_img"
+      <img class="product__img"
            src="${img}"
            alt="${name}"
            onerror="this.src='img/placeholder.png'">
 
-      <p class="product-card_desc">${desc}</p>
+      <p class="product__description">${desc}</p>
 
-      <div class="product-card_price">${price}</div>
-      <span class="product-card_sold">${sold}</span>
+      <div class="product__price">${price}</div>
+      <span class="product__sold">${sold}</span>
     </article>
   `;
 }
@@ -179,7 +179,7 @@ function searchProduct(){
 
 function guardarProductId(gridElement){
     
-    const cards = gridElement.querySelectorAll(".product-card");
+    const cards = gridElement.querySelectorAll(".product");
     const ProductId = "ProductId";
     
     cards.forEach(product =>{
@@ -197,59 +197,40 @@ function guardarProductId(gridElement){
 
 // funciones filtro y orden
 function applyPriceAndSortFilters() {
-  const min = parseFloat(minPriceInput.value) || 0;
-  const max = parseFloat(maxPriceInput.value) || Infinity;
 
-  // Filtrar por precio
-  allProducts = originalProducts.filter(p => p.cost >= min && p.cost <= max);
+    const min = parseFloat(minPriceInput.value) || 0;
+    const max = parseFloat(maxPriceInput.value) || Infinity;
 
-  // Aplicar orden
-  const sortValue = sortSelect ? sortSelect.value : "";
-  if (sortValue === "priceAsc") {
-    allProducts.sort((a, b) => a.cost - b.cost);
-  } else if (sortValue === "priceDesc") {
-    allProducts.sort((a, b) => b.cost - a.cost);
-  } else if (sortValue === "relevance") {
-    allProducts.sort((a, b) => b.soldCount - a.soldCount);
-  }
+    // Aplicar orden
+    const sortValue = sortSelect ? sortSelect.value : "";
+    if (sortValue === "priceAsc") {
+        allProducts.sort((a, b) => a.cost - b.cost);
+    } else if (sortValue === "priceDesc") {
+        allProducts.sort((a, b) => b.cost - a.cost);
+    } else if (sortValue === "relevance") {
+        allProducts.sort((a, b) => b.soldCount - a.soldCount);
+    }
 
-  // Renderizar
-  currentPage = 1;
-  renderPage(currentPage);
-  renderPagination(allProducts.length);
+    // Renderizar
+    currentPage = 1;
+    renderPage(currentPage);
+    renderPagination(allProducts.length);
+
 }
 
 // eventos controles
 filterBtn.addEventListener("click", applyPriceAndSortFilters);
 
 clearFilterBtn.addEventListener("click", () => {
-  minPriceInput.value = "";
-  maxPriceInput.value = "";
-  sortSelect.value = "priceAsc"; // opción por defecto
-  allProducts = originalProducts.slice();
-  currentPage = 1;
-  renderPage(currentPage);
-  renderPagination(allProducts.length);
+
+    minPriceInput.value = "";
+    maxPriceInput.value = "";
+    sortSelect.value = "priceAsc";
+    allProducts = originalProducts.slice();
+    currentPage = 1;
+    renderPage(currentPage);
+    renderPagination(allProducts.length);
+
 });
 
 sortSelect.addEventListener("change", applyPriceAndSortFilters);
-
-// ================================
-// MODO CLARO / OSCURO
-// ================================
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-mode");
-  if (themeToggle) themeToggle.textContent = "Modo claro";
-}
-
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    body.classList.toggle("dark-mode");
-    const isDark = body.classList.contains("dark-mode");
-    themeToggle.textContent = isDark ? "Modo claro" : "Modo oscuro";
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  });
-}

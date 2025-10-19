@@ -1,0 +1,53 @@
+
+    .navbar--bg {
+        background-color: var(--navbar-color);
+    }
+
+
+    .navbar-nav .nav-link, .navbar-brand, .navbar-text { 
+        color: var(--font-color); 
+    }
+
+    .navbar-nav .nav-link, .navbar-brand, .navbar-text { 
+        color: var(--font-color); 
+    }
+
+
+    .card{
+        background-color: var(--main-color);
+
+    }
+        .card__title{
+            color: var(--font-color);
+        }
+        .card__text{
+            color: var(--font-color);
+        }
+
+        .container__quantity{
+            color: var(--font-color);
+        }
+
+        .category{
+
+            background-color:   var(--card-color);
+        
+        }
+
+        .category:hover{
+            background-color: var(--card-color-hover);
+        }
+
+            .category__title{
+                color: var(--font-color);
+            }
+
+            .category__amount{
+                color: var(--font-color);
+            }
+            
+            .category__description{
+                color: var(--font-color);
+            }
+
+    
