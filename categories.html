@@ -10,47 +10,56 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/theme.css">
-  <link href="css/categories.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="css/products.css">
 </head>
 
 <body>
-  
-    <nav class="navbar--bg navbar navbar-expand-lg p-1 ">
-        
-        <div class="container">
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                
-                <span class="navbar-toggler-icon"></span>
-            
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                
-                <ul class="navbar-nav w-100 justify-content-between">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
-                    </li>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-orange py-2">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <img src="img/byte-squad-logo.png" alt="Byte Squad" height="28">
+      <span class="fw-bold">eMercado</span>
+    </a>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="categories.html">Categorías</a>
-                    </li>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="sell.html">Vender</a>
-                    </li>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+        <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-1" href="cart.html">
+            <img src="img/shopping-cart.svg" alt="" height="18"> Carrito
+          </a>
+        </li>
+      </ul>
 
-                    <li class="nav-item">
-                    </li>
-                </ul>
+      <a id="userEmail" class="navbar-text ms-auto" href="my-profile.html"></a>
+    </div>
+  </div>
+</nav>
 
-                <span id="userEmail" class="navbar-text"></span>
-            
-            </div>
-
+  <main class="pb-5">
+    <div class="text-center p-4">
+      <h2>Categorías</h2>
+      <p class="lead">Verás aquí todas las categorías del sitio.</p>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options" id="sortAsc">
+            <label class="btn btn-light" for="sortAsc">A-Z</label>
+            <input type="radio" class="btn-check" name="options" id="sortDesc">
+            <label class="btn btn-light" for="sortDesc">Z-A</label>
+            <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
+            <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i></label>
+          </div>
         </div>
 
     </nav>

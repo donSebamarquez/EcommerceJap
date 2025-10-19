@@ -3,9 +3,13 @@ body{
 
 }
 
-    .navbar--bg {
-        background-color: var(--navbar-color);
-    }
+
+/* Texto/links blancos para navbar-dark s*/
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-text { color: #fff; }
+.navbar-dark .nav-link:hover,
+.navbar-dark .nav-link:focus { color: #f3f3f3; }
 
     #searchInput.form-control,
     #searchInput.form-control:focus {

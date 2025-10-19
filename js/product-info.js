@@ -55,6 +55,8 @@ function showProduct(product, commentaries) {
     container.appendChild(productStarsContainer);
 }
 
+
+
 function showRelatedProducts(products) {
     const productId = "ProductId";
     products.forEach(product => {
