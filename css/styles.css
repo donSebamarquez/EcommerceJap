@@ -1,16 +1,3 @@
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --jumbotron-bg: #53C0FB;
-  --card-bg: #f8f9fa;
-}
-
-body.dark-mode {
-  --bg-color: #121212;
-  --text-color: #ffffff;
-  --jumbotron-bg: #1e1e1e;
-  --card-bg: #1a1a1a;
-}
 
 .jumbotron,
 .card-body,
@@ -169,13 +156,6 @@ footer p {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
 }
 
 #spinner-wrapper {

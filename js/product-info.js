@@ -16,22 +16,27 @@ document.addEventListener("DOMContentLoaded", cargarProducto)
 
 async function cargarProducto() {
     try {
+        
         const productRes = await fetch(url);
         if (!productRes.ok) throw new Error("Error al cargar los datos del producto");
+        
         const commentariesRes = await fetch(commentariesUrl);
         if (!commentariesRes.ok) throw new Error("Error al cargar los comentarios del producto");
+        
         const product = await productRes.json();
         const commentaries = await commentariesRes.json();
 
         let savedComments = JSON.parse(localStorage.getItem(localCommentsKey)) || [];
         showProduct(product, commentaries.concat(savedComments));
-    } catch (e) {
+    } 
+    catch (e) {
         console.error(e.message);
         container.innerHTML = `<p class="product__error">${e.message}. Intenta nuevamente más tarde.</p>`;
     }
 }
 
 function showProduct(product, commentaries) {
+    
     createProduct(product)
     showRelatedProducts(product.relatedProducts)
     showCommentaries(commentaries);
@@ -193,119 +198,47 @@ function showCommentModal(starScore) {
     });
 }
 
-function addCommentary() { }
-
 function createProduct(product) {
+    
     crearElemento("h2", product.name, "product__name", container);
     crearElemento("p", product.description, "product__description", container);
     crearElemento("p", `${product.currency} ${product.cost}`, "product__price", container);
     crearElemento("p", `Vendidos: ${product.soldCount}`, "product__sold", container);
     crearElemento("p", `Categoría: ${product.category}`, "product__category", container);
+    
     const gallery = document.createElement("div");
     gallery.className = "product__gallery";
+    
     const mainImg = document.createElement("img");
     mainImg.src = product.images[0];
     mainImg.className = "product__gallery--main";
     gallery.appendChild(mainImg);
+    
     const extraImages = document.createElement("div");
     extraImages.className = "product__gallery--secondaries";
+    
     product.images.forEach(imgSrc => {
+        
         const secondaryImage = document.createElement("img");
         secondaryImage.src = imgSrc;
         secondaryImage.className = "product__gallery--secondary";
+        
         secondaryImage.addEventListener("click", () => {
             mainImg.src = imgSrc;
         });
+        
         extraImages.appendChild(secondaryImage);
+
     });
+    
     gallery.appendChild(extraImages);
     container.appendChild(gallery);
-}
+    
+} 
 
 function crearElemento(tag, text, className, container) {
     const element = document.createElement(tag);
     element.textContent = text;
     element.className = className;
     container.appendChild(element);
-}
-
-// ================================
-// MODO CLARO / OSCURO (DINÁMICO)
-// ================================
-
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-// --- función modo oscuro ---
-function aplicarModoOscuro() {
-  body.classList.add("dark-mode");
-
-  // Fondo general
-  body.style.backgroundColor = "#0b0f1a";
-  body.style.color = "#e2e8f0";
-
-  // Card del producto
-  document.querySelectorAll(".product").forEach(el => {
-    el.style.backgroundColor = "#101b33";
-    el.style.color = "#f1f5f9";
-    el.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.4)";
-  });
-
-  // Productos relacionados
-  document.querySelectorAll(".related__item").forEach(el => {
-    el.style.backgroundColor = "#101b33";
-    el.style.color = "#f1f5f9";
-    el.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.4)";
-  });
-
-  // Comentarios
-  document.querySelectorAll(".comment-block").forEach(el => {
-    el.style.backgroundColor = "#1e293b";
-    el.style.color = "#e2e8f0";
-  });
-
-  // Navbar (si existe)
-  const navbar = document.querySelector("nav.navbar");
-  if (navbar) navbar.style.backgroundColor = "#1e3a8a";
-
-  // Footer (si existe)
-  const footer = document.querySelector("footer");
-  if (footer) {
-    footer.style.backgroundColor = "#0f172a";
-    footer.style.color = "#cbd5e1";
-  }
-
-  if (themeToggle) themeToggle.textContent = "Modo claro";
-}
-
-// --- función modo claro ---
-function aplicarModoClaro() {
-  body.classList.remove("dark-mode");
-
-  // Limpiar estilos en línea
-  body.removeAttribute("style");
-  document.querySelectorAll(".product, .related__item, .comment-block, footer, nav.navbar").forEach(el => {
-    el.removeAttribute("style");
-  });
-
-  if (themeToggle) themeToggle.textContent = "Modo oscuro";
-}
-
-// --- Al cargar, aplicar el tema guardado ---
-if (localStorage.getItem("theme") === "dark") {
-  aplicarModoOscuro();
-}
-
-// --- Evento para cambiar tema ---
-if (themeToggle) {
-  themeToggle.addEventListener("click", () => {
-    const isDark = body.classList.contains("dark-mode");
-    if (isDark) {
-      aplicarModoClaro();
-      localStorage.setItem("theme", "light");
-    } else {
-      aplicarModoOscuro();
-      localStorage.setItem("theme", "dark");
-    }
-  });
 }

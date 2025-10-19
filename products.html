@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,133 +11,165 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/theme.css">
+
 </head>
 
 <body>
 
-  <!-- Header-->
-  <header role="banner">
-   <!-- Header (Bootstrap navbar) -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-orange py-2" role="banner">
-  <div class="container-fluid">
-    <!-- Marca -->
-    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html" aria-label="Inicio">
-      <img src="img/byte-squad-logo.png" alt="Byte Squad" height="28" />
-      <span class="fw-bold">eMercado</span>
-    </a>
+    <header role="banner">
+        
+        <nav class="navbar navbar-expand-lg navbar-dark navbar--bg py-2" role="banner">
+            
+            <div class="container-fluid">
+                
+                <a class="navbar-brand d-flex align-items-center gap-2" href="index.html" aria-label="Inicio">
+                    
+                    <img src="img/byte-squad-logo.png" alt="Byte Squad" height="28" />
+                    <span class="fw-bold">eMercado</span>
+                
+                </a>
 
-    <!-- Burger -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-            aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegación">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegación">
+                    
+                    <span class="navbar-toggler-icon"></span>
 
-    <div class="collapse navbar-collapse d-flex align-items-center" id="mainNav">
-      <!-- Izquierda: links -->
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
-        <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-1" href="cart.html" aria-label="Ver carrito">
-            <img src="img/shopping-cart.svg" alt="" height="18" aria-hidden="true"> Carrito
-          </a>
-        </li>
-      </ul>
+                </button>
 
-      <!-- CENTRO (lg+): buscador centrado -->
-      <form id="searchForm" class="d-none d-lg-flex mx-auto flex-grow-1" style="max-width:520px"
-            role="search" aria-label="Buscar productos">
-        <input id="searchInput"
-               class="form-control bg-transparent text-white border-light"
-               type="search" placeholder="Buscar..." aria-label="Buscar">
-      </form>
+                <div class="collapse navbar-collapse d-flex align-items-center" id="mainNav">
+                    
+                    <ul class="navbar-nav">
+                        
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+                        <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
+                        <li class="nav-item">
+                            
+                            <a class="nav-link d-flex align-items-center gap-1" href="cart.html" aria-label="Ver carrito">
+                                
+                                <img src="img/shopping-cart.svg" alt="" height="18" aria-hidden="true"> Carrito
+                            
+                            </a>
+                        
+                        </li>
+                    
+                    </ul>
 
-      <!-- DERECHA: usuario -->
-      <span id="userEmail" class="navbar-text ms-3"></span>
+                    <!-- CENTRO (lg+): buscador centrado -->
+                    <form id="searchForm" class="d-none d-lg-flex mx-auto flex-grow-1" style="max-width:520px"
+                            role="search" aria-label="Buscar productos">
+                            
+                            <input id="searchInput"
+                            class="form-control bg-transparent text-white border-light"
+                            type="search" placeholder="Buscar..." aria-label="Buscar"
+                            >
 
-      <!-- cambiar modo claro/oscuro-->
-      <button id="themeToggle" class="btn btn-outline-light ms-3">Modo oscuro</button>
+                    </form>
 
-      <!-- MÓVIL (sm–md): buscador a lo ancho dentro del collapse -->
-      <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
-        <input id="searchInputMobile"
-               class="form-control bg-transparent text-white border-light"
-               type="search" placeholder="Buscar..." aria-label="Buscar">
-      </form>
-    </div>
-  </div>
-</nav>
+                    <span id="userEmail" class="navbar-text ms-3"></span>
 
-  </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main>
-    <!-- Alert de errores (lo maneja JS si algo falla) -->
-    <div id="alert" role="alert" class="d-none"></div>
-    <!-- Sección de productos -->
-    <section id="productsGrid" aria-label="Listado de productos">
-      <!-- JS va a inyectar las cards acá -->
-    </section>
-    <!-- Paginación -->
-    <nav id="paginationNav" aria-label="Paginación de productos">
-      <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
-    </nav>
+                    <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
+                            
+                            <input id="searchInputMobile"
+                            class="form-control bg-transparent text-white border-light"
+                            type="search" placeholder="Buscar..." aria-label="Buscar"
+                            >
 
-    <section id="filters" class="mb-4">
-  <div class="row g-3 align-items-end">
-    <!-- Filtro de rango de precio -->
-    <div class="col-md-3">
-      <label for="minPrice" class="form-label">Precio mínimo</label>
-      <input type="number" id="minPrice" class="form-control" placeholder="Ej: 100">
-    </div>
-    <div class="col-md-3">
-      <label for="maxPrice" class="form-label">Precio máximo</label>
-      <input type="number" id="maxPrice" class="form-control" placeholder="Ej: 500">
-    </div>
-    <div class="col-md-2">
-      <button id="filterBtn" class="btn btn-primary w-100">Filtrar</button>
-    </div>
-    <div class="col-md-2">
-      <button id="clearFilterBtn" class="btn btn-secondary w-100">Limpiar</button>
-    </div>
+                    </form>
 
-    <!-- Ordenamiento -->
-    <div class="col-md-2">
-      <label for="sortOptions" class="form-label">Ordenar por</label>
-      <select id="sortOptions" class="form-select">
-        <option value="priceAsc">Precio ↑</option>
-        <option value="priceDesc">Precio ↓</option>
-        <option value="relevance">Relevancia</option>
-      </select>
-    </div>
-  </div>
-</section>
-  </main>
+                </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p><a href="#">Volver arriba</a></p>
-    <p>&copy; 2025 eMercado</p>
-    <p>Este sitio forma parte de
-      <a href="https://jovenesaprogramar.edu.uy/" target="_blank" rel="noopener">
-        Jóvenes a Programar
-      </a>
-    </p>
-  </footer>
+            </div>
 
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/isloged.js"></script>
+        </nav>
+
+    </header>
+
+    <main>
+        
+        <div id="alert" role="alert" class="d-none"></div>
+        
+        <section class="mb-4">
+        
+            <div class="row g-3 align-items-end">
+                
+                <div class="col-md-3">
+                
+                    <label for="minPrice" class="form-label">Precio mínimo</label>
+                    <input type="number" id="minPrice" class="form-control" placeholder="Ej: 100">
+                
+                </div>
+                
+                <div class="col-md-3">
+                
+                    <label for="maxPrice" class="form-label">Precio máximo</label>
+                    <input type="number" id="maxPrice" class="form-control" placeholder="Ej: 500">
+                
+                </div>
+                
+                <div class="col-md-2">
+                
+                    <button id="filterBtn" class="btn btn-primary w-100">Filtrar</button>
+                
+                </div>
+                
+                <div class="col-md-2">
+                    
+                    <button id="clearFilterBtn" class="btn btn-secondary w-100">Limpiar</button>
+                
+                </div>
+
+                <div class="col-md-2">
+                
+                    <label for="sortOptions" class="form-label">Ordenar por</label>
+                    <select id="sortOptions" class="form-select">
+                
+                        <option value="priceAsc">Precio ↑</option>
+                        <option value="priceDesc">Precio ↓</option>
+                        <option value="relevance">Relevancia</option>
+                
+                    </select>
+                
+                </div>
+            
+            </div>
+    
+        </section>
+
+        <section id="productsGrid" class="products" aria-label="Listado de productos">
+
+        </section>
+        
+        <nav id="paginationNav" aria-label="Paginación de productos">
+        
+            <ul id="pagination" class="pagination justify-content-center mt-4"></ul>
+        
+        </nav>
+    
+    </main>
+
+    <footer class="footer">
+
+        <p><a href="#">Volver arriba</a></p>
+        <p>&copy; 2025 eMercado</p>
+        <p>Este sitio forma parte de
+            
+            <a href="https://jovenesaprogramar.edu.uy/" target="_blank" rel="noopener">
+                Jóvenes a Programar
+            </a>
+        
+        </p>
+
+    </footer>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/isloged.js"></script>
+    <script src="js/theme.js"></script>
+
 </body>
 
 </html>
