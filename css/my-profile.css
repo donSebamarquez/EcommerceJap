@@ -1,0 +1,80 @@
+body {
+  font-family: sans-serif; 
+  color: var(--font-color);
+  margin: 0;
+  background-color:var(white);
+}
+
+nav {
+  background-color: #242424;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+#logout {
+  background-color: #f04a4a;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem;
+  background-color: white;
+  margin: 2rem auto;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-left img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-right {
+  width: 60%;
+}
+
+.profile-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.profile-inputs input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#save-data {
+  margin-top: 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
