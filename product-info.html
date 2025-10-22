@@ -64,7 +64,6 @@
 
                 </form>
 
-                <span id="userEmail" class="navbar-text ms-3"></span>
 
 
                 <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
@@ -74,9 +73,21 @@
 
                 </form>
 
-                <div class="d-flex">
-                    <button id="themeToggle" class="btn btn-outline-light btn-sm ms-auto">🌙 Modo oscuro</button>
-                </div>
+                <li class="nav-item dropdown ms-3">
+                    <a href="#" class="dropdown-toggle d-flex align-items-center" id="navProfileDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img id="navProfilePic" src="img/placeholder.png" alt="Foto perfil" class="rounded-circle"
+                            width="35" height="35" style="object-fit: cover;">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navProfileDropdown">
+                        <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+
             </div>
 
         </div>
@@ -84,26 +95,26 @@
     </nav>
 
     <main class="main container-fluid px-3 px-md-5 py-4">
+        <div class="container my-3">
+            <div class="page-reference mb-3">
+                <span class="breadcrumb">Categorias > Productos > Info. de productos</span>
+            </div>
 
-        <section class="product"></section>
+            <section class="product"></section>
 
-        <h2 class="related__title text-center mt-5 mb-4">Productos Relacionados</h2>
-        <section class="related"></section>
-
+            <h2 class="related__title text-center mt-5 mb-4">Productos Relacionados</h2>
+            <section class="related"></section>
+        </div>
     </main>
 
-    <footer class="text-muted py-3">
-
-        <div class="container text-center">
-
-            <p class="mb-1"><a href="#">Volver arriba</a></p>
-            <p class="mb-0">
-                © 2025 eMercado — Parte de
-                <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jóvenes a Programar</a>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-end">
+                <a href="#">Volver arriba</a>
             </p>
-
+            <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a
+                    Programar</a></p>
         </div>
-
     </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
