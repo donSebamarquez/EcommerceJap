@@ -14,6 +14,20 @@ nav a {
   text-decoration: none;
 }
 
+/* Quitar todos los puntos de listas  */
+ul, li {
+  list-style: none; 
+  padding-left: 0;  
+  margin: 0;
+}
+
+#navProfileDropdown + .dropdown-menu,
+#navProfileDropdown + .dropdown-menu li {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

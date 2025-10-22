@@ -7,6 +7,8 @@ body {
     background-color: var(--navbar-color);
 }
 
+
+
 #searchInput.form-control,
 #searchInput.form-control:focus {
     background-color: transparent;
@@ -15,13 +17,9 @@ body {
     border-color: rgba(255, 255, 255, .5);
 }
 
-.form-label {
-    color: white;
-}
 
-.breadcrumb{
-    color: #8d8d8d;
-}
+
+
 
 .products {
     display: grid;

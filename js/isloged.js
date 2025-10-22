@@ -1,12 +1,18 @@
-// Obtiene el nombre del usuario guardado en login_success y lo muestra en la barra
-const slot = document.getElementById("userEmail");
-const session = JSON.parse(localStorage.getItem("login_success"));
+document.addEventListener("DOMContentLoaded", function() {
+  const user = JSON.parse(localStorage.getItem("login_success"));
+  if (!user) return;
 
-if (slot && session) {
-  // Creamos un link
-  const profileLink = document.createElement("a");
-  profileLink.href = "my-profile.html"; // página del perfil
-  profileLink.textContent = session.name; // nombre del usuario
-  profileLink.classList.add("nav-link", "text-white"); // clases opcionales para estilo
-  slot.appendChild(profileLink);
-}
+  const picKey = `profile_pic_${user.email}`;
+  const savedPic = localStorage.getItem(picKey) || 'img/placeholder.png';
+  const navPic = document.getElementById('navProfilePic');
+  if (navPic) navPic.src = savedPic;
+
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      alert(`Te extrañaremos ${user.name}`);
+      localStorage.removeItem("login_success");
+      window.location.href = 'login.html';
+    });
+  }
+});

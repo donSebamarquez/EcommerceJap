@@ -8,33 +8,90 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/theme.css">
   <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sell.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar--bg py-2" role="banner">
+
+    <div class="container-fluid">
+
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html" aria-label="Inicio">
+
+        <img src="img/byte-squad-logo.png" alt="Byte Squad" height="28" />
+        <span class="fw-bold">eMercado</span>
+
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Alternar navegación">
+
         <span class="navbar-toggler-icon"></span>
+
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
+
+      <div class="collapse navbar-collapse d-flex align-items-center" id="mainNav">
+
+        <ul class="navbar-nav">
+
+          <li class="nav-item"><a class="nav-link " href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categorías</a></li>
+          <li class="nav-item"><a class="nav-link active" class="sell" href="sell.html">Vender</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+
+            <a class="nav-link d-flex align-items-center gap-1" href="cart.html" aria-label="Ver carrito">
+
+              <img src="img/shopping-cart.svg" alt="" height="18" aria-hidden="true"> Carrito
+
+            </a>
+
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          </li>
+
         </ul>
+
+        <!-- CENTRO (lg+): buscador centrado -->
+        <form id="searchForm" class="d-none d-lg-flex mx-auto flex-grow-1" style="max-width:520px" role="search"
+          aria-label="Buscar productos">
+
+          <input id="searchInput" class="form-control bg-transparent text-white border-light" type="search"
+            placeholder="Buscar..." aria-label="Buscar">
+
+        </form>
+
+
+
+        <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
+
+          <input id="searchInputMobile" class="form-control bg-transparent text-white border-light" type="search"
+            placeholder="Buscar..." aria-label="Buscar">
+
+        </form>
+
+        <li class="nav-item dropdown ms-3">
+          <a href="#" class="dropdown-toggle d-flex align-items-center" id="navProfileDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img id="navProfilePic" src="img/placeholder.png" alt="Foto perfil" class="rounded-circle" width="35"
+              height="35" style="object-fit: cover;">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navProfileDropdown">
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+          </ul>
+        </li>
+
       </div>
+
     </div>
+
   </nav>
+
+
+
   <div class="container">
     <div class="text-center p-4">
       <h2>Vender</h2>
@@ -72,15 +129,16 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="productCostInput">Costo</label>
-              <input type="number" name="productCostInput" class="form-control" id="productCostInput" placeholder="" required="" value="0"
-                min="0">
+              <input type="number" name="productCostInput" class="form-control" id="productCostInput" placeholder=""
+                required="" value="0" min="0">
               <div class="invalid-feedback">
                 El costo debe ser mayor que 0.
               </div>
             </div>
             <div class="col-md-4 mb-3">
               <label for="productCurrency">Moneda</label>
-              <select name="productCurrency" class="form-select custom-select d-block w-100" id="productCurrency" required>
+              <select name="productCurrency" class="form-select custom-select d-block w-100" id="productCurrency"
+                required>
                 <option value="" hidden selected>Seleccionar moneda</option>
                 <option>Pesos Uruguayos (UYU)</option>
                 <option>Dólares (USD)</option>
@@ -110,8 +168,8 @@
           <div class="row">
             <div class="col-md-3 mb-3">
               <label for="productCountInput">Cantidad en stock</label>
-              <input type="number" name="productCountInput" class="form-control" id="productCountInput"  required value="1"
-                min="0">
+              <input type="number" name="productCountInput" class="form-control" id="productCountInput" required
+                value="1" min="0">
               <div class="invalid-feedback">
                 La cantidad es requerida.
               </div>
@@ -172,7 +230,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
 
@@ -226,6 +285,7 @@
   <script src="js/init.js"></script>
   <script src="js/sell.js"></script>
   <script src="js/isloged.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 
 </html>

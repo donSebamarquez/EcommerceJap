@@ -9,7 +9,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/products.css">
+  <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/theme.css">
 </head>
 <!--Fernando paso por aca-->
 
@@ -41,7 +42,7 @@
           <li class="nav-item"><a class="nav-link" href="sell.html">Vender</a></li>
           <li class="nav-item">
 
-            <a class="nav-link d-flex align-items-center gap-1" href="cart.html" aria-label="Ver carrito">
+            <a class="nav-link active d-flex align-items-center gap-1" href="cart.html" aria-label="Ver carrito">
 
               <img src="img/shopping-cart.svg" alt="" height="18" aria-hidden="true"> Carrito
 
@@ -60,9 +61,6 @@
 
         </form>
 
-        <span id="userEmail" class="navbar-text ms-3"></span>
-
-
         <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
 
           <input id="searchInputMobile" class="form-control bg-transparent text-white border-light" type="search"
@@ -70,9 +68,23 @@
 
         </form>
 
-        <div class="d-flex">
-          <button id="themeToggle" class="btn btn-outline-light btn-sm ms-auto">🌙 Modo oscuro</button>
-        </div>
+
+        <li class="nav-item dropdown ms-3">
+          <a href="#" class="dropdown-toggle d-flex align-items-center" id="navProfileDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img id="navProfilePic" src="img/placeholder.png" alt="Foto perfil" class="rounded-circle" width="35"
+              height="35" style="object-fit: cover;">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navProfileDropdown">
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+          </ul>
+        </li>
+
+
       </div>
 
     </div>
@@ -106,6 +118,7 @@
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/isloged.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 
 </html>

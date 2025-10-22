@@ -53,7 +53,6 @@
 
         </ul>
 
-        <!-- CENTRO (lg+): buscador centrado -->
         <form id="searchForm" class="d-none d-lg-flex mx-auto flex-grow-1" style="max-width:520px" role="search"
           aria-label="Buscar productos">
 
@@ -62,7 +61,21 @@
 
         </form>
 
-        <span id="userEmail" class="navbar-text ms-3"></span>
+        <li class="nav-item dropdown ms-3">
+          <a href="#" class="dropdown-toggle d-flex align-items-center" id="navProfileDropdown"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img id="navProfilePic" src="img/placeholder.png" alt="Foto perfil" class="rounded-circle" width="35"
+              height="35" style="object-fit: cover;">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navProfileDropdown">
+            <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#" id="logoutBtn">Cerrar sesión</a></li>
+          </ul>
+        </li>
+
 
 
         <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
@@ -71,10 +84,6 @@
             placeholder="Buscar..." aria-label="Buscar">
 
         </form>
-
-      <div class="d-flex">
-        <button id="themeToggle" class="btn btn-outline-light btn-sm ms-auto">🌙 Modo oscuro</button>
-      </div>
 
       </div>
 

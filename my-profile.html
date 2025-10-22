@@ -40,10 +40,11 @@
 
         <form id="searchForm" class="d-none d-lg-flex mx-auto flex-grow-1" style="max-width:520px" role="search"
           aria-label="Buscar productos">
-
         </form>
 
-        <span id="userEmail" class="navbar-text ms-3"></span>
+        
+        <img id="navProfilePic" src="img/placeholder.png" alt="Foto de perfil" class="rounded-circle ms-3" width="35"
+          height="35" style="object-fit: cover; cursor: pointer;" onclick="window.location.href='my-profile.html'">
 
         <form id="searchFormMobile" class="d-lg-none w-100 mt-2" role="search" aria-label="Buscar productos">
           <input id="searchInputMobile" class="form-control bg-transparent text-white border-light" type="search"
@@ -51,7 +52,7 @@
         </form>
 
         <div class="d-flex">
-          <button id="themeToggle" class="btn btn-outline-light btn-sm ms-auto">🌙 Modo oscuro</button>
+          <button id="themeToggle" class="btn btn-outline-light btn-sm ms-2">🌙 Modo oscuro</button>
         </div>
 
       </div>
@@ -69,7 +70,7 @@
 
         <!-- Lado derecho: inputs -->
         <div class="profile-right flex-grow-1">
-          <h3 id="userName" class="mb-3">Nombre de usuario</h3>
+          <h3 id="userHeader">Datos de <span id="userName"></span></h3>
           <div id="inputsContainer"></div>
           <button id="saveData" class="btn btn-success mt-3">Guardar cambios</button>
           <button id="logout" class="btn btn-success mt-3">Cerrar sesion</button>
