@@ -16,19 +16,19 @@ document.addEventListener("DOMContentLoaded", cargarProducto)
 
 async function cargarProducto() {
     try {
-        
+
         const productRes = await fetch(url);
         if (!productRes.ok) throw new Error("Error al cargar los datos del producto");
-        
+
         const commentariesRes = await fetch(commentariesUrl);
         if (!commentariesRes.ok) throw new Error("Error al cargar los comentarios del producto");
-        
+
         const product = await productRes.json();
         const commentaries = await commentariesRes.json();
 
         let savedComments = JSON.parse(localStorage.getItem(localCommentsKey)) || [];
         showProduct(product, commentaries.concat(savedComments));
-    } 
+    }
     catch (e) {
         console.error(e.message);
         container.innerHTML = `<p class="product__error">${e.message}. Intenta nuevamente más tarde.</p>`;
@@ -36,7 +36,7 @@ async function cargarProducto() {
 }
 
 function showProduct(product, commentaries) {
-    
+
     createProduct(product)
     showRelatedProducts(product.relatedProducts)
     showCommentaries(commentaries);
@@ -199,42 +199,70 @@ function showCommentModal(starScore) {
 }
 
 function createProduct(product) {
-    
+
     crearElemento("h2", product.name, "product__name", container);
     crearElemento("p", product.description, "product__description", container);
     crearElemento("p", `${product.currency} ${product.cost}`, "product__price", container);
     crearElemento("p", `Vendidos: ${product.soldCount}`, "product__sold", container);
     crearElemento("p", `Categoría: ${product.category}`, "product__category", container);
-    
+
     const gallery = document.createElement("div");
     gallery.className = "product__gallery";
-    
+
     const mainImg = document.createElement("img");
     mainImg.src = product.images[0];
     mainImg.className = "product__gallery--main";
     gallery.appendChild(mainImg);
-    
+
     const extraImages = document.createElement("div");
     extraImages.className = "product__gallery--secondaries";
-    
+
     product.images.forEach(imgSrc => {
-        
+
         const secondaryImage = document.createElement("img");
         secondaryImage.src = imgSrc;
         secondaryImage.className = "product__gallery--secondary";
-        
+
         secondaryImage.addEventListener("click", () => {
             mainImg.src = imgSrc;
         });
-        
+
         extraImages.appendChild(secondaryImage);
 
     });
-    
+
     gallery.appendChild(extraImages);
     container.appendChild(gallery);
     
-} 
+    const addToCartBtn = document.createElement("button");
+    addToCartBtn.id = "addToCartBtn";
+    addToCartBtn.textContent = "Agregar al carrito";
+    addToCartBtn.className = "btn btn-success mt-3";
+    container.appendChild(addToCartBtn);
+
+    addToCartBtn.addEventListener("click", () => {
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+        const existingItem = cartItems.find(item => item.id === product.id);
+
+        if (existingItem) {
+            existingItem.count += 1;
+        } else {
+            cartItems.push({
+                id: product.id,
+                name: product.name,
+                cost: product.cost,
+                currency: product.currency,
+                image: product.images[0],
+                count: 1
+            });
+        }
+
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        alert("Producto agregado al carrito 🛒");
+    });
+
+
+}
 
 function crearElemento(tag, text, className, container) {
     const element = document.createElement(tag);

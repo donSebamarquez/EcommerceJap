@@ -79,7 +79,7 @@ function renderPage(page) {
 }
 
 // ========== Render paginación < 1 2 3 > ==========
-function renderPagination(totalItems) {
+function renderPagination(totalItems) { 
   if (!paginationUl) return;
 
   const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
