@@ -177,7 +177,9 @@ body {
 }
 
 .product-stars {
-    position: absolute;
+    position: static;
+    display: flex;
+    justify-content: flex-start;
     bottom: 10px;
     left: 15px;
 }
