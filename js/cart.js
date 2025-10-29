@@ -21,7 +21,9 @@ function mostrarCarrito() {
                 <button class="qty-btn decrease">−</button>
                 <span class="cart-item-quantity">${item.count}</span>
                 <button class="qty-btn increase">+</button>
-                <button class="remove-item-btn">Eliminar</button>
+                <button class="remove-item-btn" title="Eliminar">
+                <img src="img/trash.png" alt="Eliminar class="trash-icon">
+                </button>
             </div>
         </div>
     `;
