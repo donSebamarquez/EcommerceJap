@@ -10,17 +10,39 @@ function mostrarCarrito() {
         card.className = "cart-item-card";
 
         card.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="cart-item-img">
-            <div class="cart-item-info">
-                <div>
-                    <h4 class="cart-item-name">${item.name}</h4>
-                    <p class="cart-item-description">${item.currency} ${item.cost}</p>
-                </div>
+    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+        <div class="cart-item-info">
+            <div>
+                <h4 class="cart-item-name">${item.name}</h4>
+                <p class="cart-item-description">Precio unitario: ${item.currency} ${item.cost}</p>
+                <p class="cart-item-subtotal">Subtotal: ${item.currency} ${item.cost * item.count}</p>
+            </div>
+            <div class="cart-item-controls">
+                <button class="qty-btn decrease">−</button>
+                <span class="cart-item-quantity">${item.count}</span>
+                <button class="qty-btn increase">+</button>
                 <button class="remove-item-btn">Eliminar</button>
             </div>
-            <div class="cart-item-quantity">x${item.count}</div>
-        `;
+        </div>
+    `;
 
+    // botón "+"
+        card.querySelector(".increase").addEventListener("click", () => {
+            item.count++;
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        mostrarCarrito();
+    });
+
+    // botón "−"
+        card.querySelector(".decrease").addEventListener("click", () => {
+            if (item.count > 1) {
+                item.count--;
+            } else {
+                cartItems = cartItems.filter(p => p.id !== item.id);
+            }
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        mostrarCarrito();
+    });
 
         card.querySelector(".remove-item-btn").addEventListener("click", () => {
             eliminarItem(item.id);
@@ -39,13 +61,7 @@ function eliminarItem(id) {
     const index = cartItems.findIndex(item => item.id === id);
 
     if (index > -1) {
-        if (cartItems[index].count > 1) {
-            // si hay más de 1, solo restamos 1
-            cartItems[index].count -= 1;
-        } else {
-            // si queda 1, lo eliminamos
             cartItems.splice(index, 1);
-        }
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
