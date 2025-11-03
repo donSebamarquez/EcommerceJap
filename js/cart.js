@@ -23,10 +23,10 @@ function mostrarCarrito() {
         </button>
     `;
 
-    cartContainer.appendChild(emptyMsg);
+        cartContainer.appendChild(emptyMsg);
 
-    document.getElementById("goToCategoriesBtn").addEventListener("click", () => {
-        window.location.href = "categories.html";
+        document.getElementById("goToCategoriesBtn").addEventListener("click", () => {
+            window.location.href = "categories.html";
     });
 
     return; // Salimos sin renderizar nada más
