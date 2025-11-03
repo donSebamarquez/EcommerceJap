@@ -242,3 +242,18 @@ body {
 .remove-item-btn:hover {
   background-color: #b02a37;
 }
+
+#cart-count-badge {
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #fff;
+  background-color: #dc3545;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  right: -10px;
+}
