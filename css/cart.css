@@ -257,3 +257,127 @@ body {
   top: -4px;
   right: -10px;
 }
+
+/* ======================================
+   FORMULARIO DE CHECKOUT (desde Dirección de envío hacia abajo)
+   ====================================== */
+
+.checkout-card, .checkout-section {
+    background: var(--card-color, #fff);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* TÍTULOS */
+.checkout-section h3 {
+    font-size: 1.35rem;
+    margin-top: 1.6rem;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+}
+
+/* ========================
+   DIRECCIÓN DE ENVÍO
+   ======================== */
+.address-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    transition: border-color .2s;
+}
+
+.form-input:focus {
+    border-color: #0d6efd;
+    outline: none;
+}
+
+/* ========================
+   TIPO DE ENVÍO
+   ======================== */
+input[type="radio"] {
+    transform: scale(1.2);
+    margin-right: 6px;
+}
+
+/* ========================
+   FORMA DE PAGO
+   ======================== */
+.form-select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 0.8rem;
+    background: #fff;
+}
+
+.pago-opcion {
+    margin-top: 0.5rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================
+   COSTOS
+   ======================== */
+.costos-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 0.8rem;
+}
+
+.costos-box p {
+    margin: 4px 0;
+    font-size: 1rem;
+}
+
+.costos-box .total-final,
+#totalCosto {
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+/* ========================
+   BOTÓN FINALIZAR COMPRA
+   ======================== */
+#finalizarCompraBtn {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.15rem;
+    border-radius: 10px;
+    margin-top: 1.2rem;
+}
+
+/* ========================
+   MENSAJES DE ERROR / ÉXITO
+   ======================== */
+.mensaje-compra {
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.text-danger {
+    color: #d9534f !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
