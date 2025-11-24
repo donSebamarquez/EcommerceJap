@@ -25,7 +25,7 @@ function buildApiUrlOrRedirect() {
     location = "index.html";
     throw new Error("catID no encontrado");         // corta la ejecución
   }
-  return `https://japceibal.github.io/emercado-api/cats_products/${catId}.json`;
+return `http://localhost:3000/categories_products/${catId}`;
 }
 
 // init
