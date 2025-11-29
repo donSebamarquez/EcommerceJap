@@ -96,7 +96,8 @@ const logoutBtn = document.getElementById("logout");
 if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
     alert(`Te extrañaremos ${user.name}`);
-    localStorage.removeItem('login_success');
-    window.location.href = 'login.html';
+    localStorage.removeItem("login_success");
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
   });
 }

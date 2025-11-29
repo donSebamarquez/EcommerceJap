@@ -1,28 +1,42 @@
 const login = document.querySelector('#login');
 const loginError = document.querySelector('#loginError');
 
-login.addEventListener('submit', (e) => {
+login.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
 
-    const Users = JSON.parse(localStorage.getItem('users')) || [];
+    try {
+        const res = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
 
-    const userExists = Users.find(user => user.email === email);
-    if (!userExists) {
-        loginError.textContent = 'Este usuario no está registrado';
-        return;
+        const data = await res.json();
+
+        if (!res.ok) {
+            loginError.textContent = data.message || "Error al iniciar sesión";
+            return;
+        }
+
+        // GUARDAR TOKEN
+        localStorage.setItem("token", data.token);
+
+        // GUARDAR USUARIO (FORMATO eMercado)
+        localStorage.setItem("login_success", JSON.stringify({
+            email: data.user.email,
+            name: data.user.name,
+            id: data.user.id
+        }));
+
+        alert(`Bienvenid@ ${data.user.name}`);
+
+        window.location.href = "index.html";
+
+    } catch (error) {
+        loginError.textContent = "No se pudo conectar al servidor";
+        console.error(error);
     }
-
-    if (userExists.password !== password) {
-        loginError.textContent = 'Contraseña incorrecta';
-        return;
-    }
-
-    // Guardar sesión activa
-    localStorage.setItem('login_success', JSON.stringify(userExists));
-
-    alert(`Bienvenid@ ${userExists.name}`);
-    window.location.href = 'index.html';
 });
