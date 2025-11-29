@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     logoutBtn.addEventListener("click", () => {
       alert(`Te extrañaremos ${user.name}`);
       localStorage.removeItem("login_success");
+      localStorage.removeItem("token"); // IMPORTANTE
       window.location.href = 'login.html';
     });
   }

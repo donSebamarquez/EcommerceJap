@@ -212,7 +212,7 @@ function calcularCostos() {
 /* ============================================================
    VALIDAR FINALIZACIÓN DE COMPRA
    ============================================================ */
-function validarCompra() {
+async function validarCompra() {
   const departamento = document.getElementById("departamento").value.trim();
   const localidad = document.getElementById("localidad").value.trim();
   const calle = document.getElementById("calle").value.trim();
@@ -242,14 +242,43 @@ function validarCompra() {
     if (!cuenta) return mostrarError("Ingresa la cuenta bancaria.");
   }
 
-  mensaje.className = "text-success";
-  mensaje.textContent = "✅ Compra realizada con éxito";
+  // ================================================
+  //  Agregar acá el envío a tu backend
+  // ================================================
+  const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+  const token = localStorage.getItem("token");
 
-  localStorage.removeItem("cartItems");
-  actualizarBadge();
+  try {
+   const res = await fetch("http://localhost:3000/cart", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + token
+  },
+  body: JSON.stringify({ items: cartItems })
+});
 
-  setTimeout(() => location.reload(), 2000);
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      return mostrarError(data.message || "Error al guardar el carrito.");
+    }
+
+    mensaje.className = "text-success";
+    mensaje.textContent = "Compra realizada con éxito";
+
+    localStorage.removeItem("cartItems");
+    actualizarBadge();
+
+    setTimeout(() => location.reload(), 2000);
+
+  } catch (error) {
+    console.error(error);
+    mostrarError("Error de conexión con el servidor.");
+  }
 }
+
 
 function mostrarError(msg) {
   const mensaje = document.getElementById("mensajeCompra");
